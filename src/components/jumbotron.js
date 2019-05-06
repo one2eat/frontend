@@ -1,61 +1,62 @@
 import React from "react";
 import { Button } from "reactstrap";
+import styled from "@emotion/styled";
 import homeImage from "../assets/home-image.jpg";
 import logo from "../assets/one2eat-logo.png";
 
-const container = {
-  position: "relative"
-};
+const Container = styled.div`
+  position: relative;
+`;
 
-const backgroundPicture = {
-  height: "700px",
-  width: "1440px"
-};
+const BackgroundPicture = styled.img`
+  height: 700px;
+  width: 1440px;
+`;
 
-const homeLogo = {
-  width: "500px",
-  color: "white",
-  paddingLeft: "50px"
-};
+const HomeLogo = styled.img`
+  width: 400px;
+  color: white;
+  padding-left: 50px;
+`;
 
-const homeButton = {
+const HomeButton = {
   fontFamily: "Nunito",
   fontSize: "25px",
   boxShadow: "0px 10px 10px rgba(239, 71, 58, 0.5)",
-  backgroundColor: "linear-gradient(90deg, #CB2D3E 14.71 %, #EF473A 82.48 %)",
   borderRadius: "50px",
   width: "250px",
   height: "75px",
-  marginLeft: "50px"
+  marginLeft: "50px",
+  background: "linear-gradient(90deg, #cb2d3e 14.71%, #ef473a 82.48%)"
 };
 
-const imageContent = {
-  position: "absolute",
-  top: "50px",
-  color: "white"
-};
+const ImageContent = styled.div`
+  position: absolute;
+  top: 50px;
+  color: white;
+`;
 
-const contentText = {
-  fontFamily: "Nunito",
-  fontSize: "36px",
-  width: "700px",
-  paddingTop: "100px",
-  paddingBottom: "100px",
-  paddingLeft: "50px"
-};
+const ContentText = styled.p`
+  font-family: Nunito;
+  font-size: 36px;
+  width: 700px;
+  padding-top: 100px;
+  padding-bottom: 100px;
+  padding-left: 50px;
+`;
 
 export const HomeJumbotron = () => {
   return (
-    <div style={container}>
-      <img src={homeImage} alt="Home" style={backgroundPicture} />
-      <div style={imageContent}>
-        <img src={logo} alt="logo" style={homeLogo} />
-        <p style={contentText}>
+    <Container>
+      <BackgroundPicture src={homeImage} alt="Home" />
+      <ImageContent>
+        <HomeLogo src={logo} alt="logo" />
+        <ContentText>
           ONE2EAT is a service where you can find food inspiration and
           recommendation with your own ingredients.
-        </p>
-        <Button style={homeButton}>Get Started</Button>{" "}
-      </div>
-    </div>
+        </ContentText>
+        <Button style={HomeButton}>Get Started</Button>
+      </ImageContent>
+    </Container>
   );
 };

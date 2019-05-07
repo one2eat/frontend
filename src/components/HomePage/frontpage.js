@@ -1,11 +1,12 @@
 import React from "react";
 import styled from "@emotion/styled";
 import { Row } from "reactstrap";
-import homeImage from "../assets/home-image.jpg";
-import logo from "../assets/one2eat-logo.png";
-import IngredientsLogo from "../assets/ingredients.png";
-import restaurantsLogo from "../assets/restaurants.png";
-import recommendationLogo from "../assets/recommendation.png";
+import { Link } from "react-router-dom";
+import homeImage from "../../assets/images/home-image.jpg";
+import logo from "../../assets/images/one2eat-logo.png";
+import IngredientsLogo from "../../assets/images/ingredients.png";
+import restaurantsLogo from "../../assets/images/restaurants.png";
+import recommendationLogo from "../../assets/images/recommendation.png";
 
 const Container = styled.div`
   position: relative;
@@ -32,6 +33,16 @@ const HomeButton = styled.button`
   height: 75px;
   margin-left: 50px;
   background: linear-gradient(90deg, #cb2d3e 14.71%, #ef473a 82.48%);
+  cursor: pointer;
+
+  a {
+    text-decoration: none;
+    color: #fff;
+  }
+
+  a:hover {
+    font-weight: bold;
+  }
 `;
 
 const ImageContent = styled.div`
@@ -110,7 +121,9 @@ export const HomeFrontpage = () => {
           ONE2EAT is a service where you can find food inspiration and
           recommendation with your own ingredients.
         </ContentDescription>
-        <HomeButton>Get Started</HomeButton>
+        <HomeButton>
+          <Link to="/signin">Get Started</Link>
+        </HomeButton>
       </ImageContent>
       <FrontpageText>Get The Best Recommendation</FrontpageText>
       <RoundedLogoStyle>

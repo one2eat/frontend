@@ -50,7 +50,7 @@ const ContentText = styled.p`
   padding-left: 50px;
 `;
 
-export const HomeJumbotron = () => {
+export const HomeFrontpage = () => {
   return (
     <Container>
       <BackgroundPicture src={homeImage} alt="Home" />

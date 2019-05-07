@@ -14,7 +14,11 @@ const Container = styled.div`
 
 const BackgroundPicture = styled.img`
   height: 700px;
-  width: 1440px;
+  width: 1614px;
+  @media (width: 1440px) {
+    height: 700px;
+    width: 1440px;
+  }
 `;
 
 const HomeLogo = styled.img`
@@ -71,8 +75,11 @@ const FooterBackground = styled.footer`
   align-items: center;
   justify-content: space-between;
   height: 65px;
-  width: 1440px;
+  width: 1614px;
   background: linear-gradient(90deg, #2c3e50 29.37%, #4c9aaf 100%);
+  @media (width: 1440px) {
+    width: 1440px;
+  }
 `;
 
 const FooterCopyright = styled.div`

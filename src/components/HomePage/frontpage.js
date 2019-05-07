@@ -64,10 +64,8 @@ const ContentDescription = styled.p`
 `;
 
 const FrontpageText = styled.h3`
-  text-decoration: underline;
-  text-decoration-color: red;
-  padding-top: 50px;
-  padding-left: 50px;
+  margin: 50px;
+  border-bottom: 1px solid #ca2d3e;
 `;
 
 const FooterBackground = styled.footer`
@@ -101,6 +99,7 @@ const RoundedLogo = styled.div`
   width: 150px;
   height: 150px;
   border-radius: 50%;
+  margin-bottom: 24px;
   background: linear-gradient(256.23deg, #cb2d3e 22.63%, #ef473a 68.74%);
 `;
 
@@ -125,6 +124,7 @@ const OverrideCol = styled.div`
   flex-basis: 0;
   flex-grow: 1;
   max-width: 100%;
+  font-weight: bold;
 `;
 
 export const HomeFrontpage = () => {

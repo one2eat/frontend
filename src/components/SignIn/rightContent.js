@@ -2,6 +2,9 @@ import React from "react";
 import styled from "@emotion/styled";
 import { Formik, Form, ErrorMessage } from "formik";
 import { Row, Col } from "reactstrap";
+import validate from './validate-yup/validateYup';
+import getValidationSchema from './validate-yup/getValidationSchema'
+
 import GoogleLogo from "../../assets/images/signIn/google.png";
 import FacebookLogo from "../../assets/images/signIn/facebook.png";
 
@@ -66,32 +69,23 @@ const SignWith = styled.div`
   }
 `;
 
+
+
 const SignInForm = () => (
   <InsideRightContent>
     <WidthForm>
       <FormTitle>SIGN IN</FormTitle>
       <Formik
         initialValues={{ email: "", password: "" }}
-        validate={values => {
-          let errors = {};
-          if (!values.email) {
-            errors.email = "Required";
-          } else if (
-            !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
-          ) {
-            errors.email = "Invalid email address";
-          }
-          return errors;
-        }}
+        validationSchema={validate(getValidationSchema)}
         onSubmit={(values, { setSubmitting }) => {
-          console.log(values.email)
           setTimeout(() => {
             alert(JSON.stringify(values, null, 2));
             setSubmitting(false);
           }, 500);
         }}
       >
-        {({ isSubmitting, handleChange, values }) => (
+        {({ isSubmitting, handleChange, values, setSubmitting }) => (
           <Form>
             <FormInput
               type="email"
@@ -100,7 +94,7 @@ const SignInForm = () => (
               onChange={handleChange}
               placeholder="Email Address"
             />
-            <ErrorMessage name="email" component="div" />
+            <ErrorMessage name="email" component="span" />
 
             <FormInput
               type="password"
@@ -110,10 +104,10 @@ const SignInForm = () => (
               onChange={handleChange}
               value={values.password}
             />
-            <ErrorMessage name="password" component="div" />
+            <ErrorMessage name="password" component="span" />
 
-            <FormButton type="submit" disabled={isSubmitting}>
-              Sign In
+            <FormButton type="submit" disabled={values.password.length > 0 ? false : true}>
+              {isSubmitting ? "Loading" : "Sign In"}
             </FormButton>
           </Form>
         )}
@@ -122,21 +116,13 @@ const SignInForm = () => (
       <Row>
         <Col>
           <SignWith>
-            <img
-              src={GoogleLogo}
-              alt="google"
-              width="35px"
-            />
+            <img src={GoogleLogo} alt="google" width="35px" />
             <span> Google</span>
           </SignWith>
         </Col>
         <Col>
           <SignWith>
-            <img
-              src={FacebookLogo}
-              alt="facebook"
-              width="35px"
-            />
+            <img src={FacebookLogo} alt="facebook" width="35px" />
             <span>Facebook</span>
           </SignWith>
         </Col>

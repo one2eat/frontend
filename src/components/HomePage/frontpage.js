@@ -57,10 +57,11 @@ const ImageContent = styled.div`
 
 const ContentDescription = styled.p`
   font-size: 36px;
-  width: 700px;
+  width: 552px;
   padding-top: 125px;
   padding-bottom: 100px;
   padding-left: 50px;
+  text-align: justify;
 `;
 
 const FrontpageText = styled.h3`

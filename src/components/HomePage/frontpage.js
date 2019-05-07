@@ -57,16 +57,17 @@ const ImageContent = styled.div`
 
 const ContentDescription = styled.p`
   font-size: 36px;
-  width: 552px;
+  width: 700px;
   padding-top: 125px;
   padding-bottom: 100px;
   padding-left: 50px;
-  text-align: justify;
 `;
 
 const FrontpageText = styled.h3`
-  margin: 50px;
-  border-bottom: 1px solid #ca2d3e;
+  text-decoration: underline;
+  text-decoration-color: red;
+  padding-top: 50px;
+  padding-left: 50px;
 `;
 
 const FooterBackground = styled.footer`
@@ -99,7 +100,6 @@ const RoundedLogo = styled.div`
   justify-content: center;
   width: 150px;
   height: 150px;
-  margin-bottom: 24px;
   border-radius: 50%;
   background: linear-gradient(256.23deg, #cb2d3e 22.63%, #ef473a 68.74%);
 `;
@@ -107,12 +107,6 @@ const RoundedLogo = styled.div`
 const RoundedLogoStyle = styled.div`
   margin-top: 100px;
   margin-bottom: 500px;
-  width: 1320px;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 20px;
-  background: #f3f3f3;
-  border-radius: 10px;
 `;
 
 const OverrideCol = styled.div`
@@ -122,7 +116,6 @@ const OverrideCol = styled.div`
   flex-basis: 0;
   flex-grow: 1;
   max-width: 100%;
-  font-weight: bold;
 `;
 
 export const HomeFrontpage = () => {

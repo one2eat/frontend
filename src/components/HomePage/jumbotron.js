@@ -6,7 +6,6 @@ import logo from "../../assets/images/one2eat-logo.png";
 
 const Container = styled.div`
   position: relative;
-  height: 720px;
   width: 1280px;
   margin: 0 auto;
 `;

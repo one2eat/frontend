@@ -107,6 +107,15 @@ const RoundedLogo = styled.div`
 const RoundedLogoStyle = styled.div`
   margin-top: 100px;
   margin-bottom: 500px;
+  width: 1510px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 20px;
+  background: #f3f3f3;
+  border-radius: 10px;
+  @media (width: 1440px) {
+    width: 1320px;
+  }
 `;
 
 const OverrideCol = styled.div`

@@ -1,15 +1,18 @@
 import React from "react";
 import styled from "@emotion/styled";
-import homeImage from "../assets/home-image.jpg";
-import logo from "../assets/one2eat-logo.png";
+import { Link } from "react-router-dom";
+import homeImage from "../../assets/images/home-image.jpg";
+import logo from "../../assets/images/one2eat-logo.png";
 
 const Container = styled.div`
   position: relative;
+  height: 720px;
+  width: 1280px;
+  margin: 0 auto;
 `;
 
 const BackgroundPicture = styled.img`
-  height: 700px;
-  width: 1440px;
+  /* width: 1280px; */
 `;
 
 const HomeLogo = styled.img`
@@ -26,7 +29,12 @@ const HomeButton = styled.button`
   height: 75px;
   margin-left: 50px;
   background: linear-gradient(90deg, #cb2d3e 14.71%, #ef473a 82.48%);
-`
+
+  a {
+    text-decoration: none;
+    color: #fff;
+  }
+`;
 
 const ImageContent = styled.div`
   position: absolute;
@@ -53,7 +61,9 @@ export const HomeJumbotron = () => {
           ONE2EAT is a service where you can find food inspiration and
           recommendation with your own ingredients.
         </ContentText>
-        <HomeButton>Get Started</HomeButton>
+        <HomeButton>
+          <Link to="/signin">Get Started</Link>
+        </HomeButton>
       </ImageContent>
     </Container>
   );

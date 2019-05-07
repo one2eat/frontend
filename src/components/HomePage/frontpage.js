@@ -100,6 +100,7 @@ const RoundedLogo = styled.div`
   justify-content: center;
   width: 150px;
   height: 150px;
+  margin-bottom: 24px;
   border-radius: 50%;
   background: linear-gradient(256.23deg, #cb2d3e 22.63%, #ef473a 68.74%);
 `;

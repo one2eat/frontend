@@ -65,10 +65,8 @@ const ContentDescription = styled.p`
 `;
 
 const FrontpageText = styled.h3`
-  text-decoration: underline;
-  text-decoration-color: red;
-  padding-top: 50px;
-  padding-left: 50px;
+  margin: 50px;
+  border-bottom: 1px solid #ca2d3e;
 `;
 
 const FooterBackground = styled.footer`
@@ -109,6 +107,12 @@ const RoundedLogo = styled.div`
 const RoundedLogoStyle = styled.div`
   margin-top: 100px;
   margin-bottom: 500px;
+  width: 1320px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 20px;
+  background: #f3f3f3;
+  border-radius: 10px;
 `;
 
 const OverrideCol = styled.div`
@@ -118,6 +122,7 @@ const OverrideCol = styled.div`
   flex-basis: 0;
   flex-grow: 1;
   max-width: 100%;
+  font-weight: bold;
 `;
 
 export const HomeFrontpage = () => {

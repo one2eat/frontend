@@ -2,6 +2,8 @@ import React from "react";
 import styled from "@emotion/styled";
 import { Formik, Form, ErrorMessage } from "formik";
 import { Row, Col } from "reactstrap";
+import GoogleLogo from "../../assets/images/signIn/google.png";
+import FacebookLogo from "../../assets/images/signIn/facebook.png";
 
 const FormTitle = styled.h1`
   color: #fff;
@@ -82,6 +84,7 @@ const SignInForm = () => (
           return errors;
         }}
         onSubmit={(values, { setSubmitting }) => {
+          console.log(values.email)
           setTimeout(() => {
             alert(JSON.stringify(values, null, 2));
             setSubmitting(false);
@@ -92,6 +95,7 @@ const SignInForm = () => (
           <Form>
             <FormInput
               type="email"
+              autoComplete="current-email"
               name="email"
               onChange={handleChange}
               placeholder="Email Address"
@@ -100,6 +104,7 @@ const SignInForm = () => (
 
             <FormInput
               type="password"
+              autoComplete="current-password"
               name="password"
               placeholder="Password"
               onChange={handleChange}
@@ -118,7 +123,7 @@ const SignInForm = () => (
         <Col>
           <SignWith>
             <img
-              src={require("../../assets/images/signIn/google.png")}
+              src={GoogleLogo}
               alt="google"
               width="35px"
             />
@@ -128,7 +133,7 @@ const SignInForm = () => (
         <Col>
           <SignWith>
             <img
-              src={require("../../assets/images/signIn/facebook.png")}
+              src={FacebookLogo}
               alt="facebook"
               width="35px"
             />

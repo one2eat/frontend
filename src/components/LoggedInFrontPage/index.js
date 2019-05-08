@@ -1,0 +1,62 @@
+import React, { Component } from "react";
+import {
+  Collapse,
+  Navbar,
+  NavbarToggler,
+  NavbarBrand,
+  Nav,
+  NavItem,
+  NavLink,
+  UncontrolledDropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem } from 'reactstrap';
+
+import LoggedInFrontPage from './loggedIn';
+
+export default class IndexFrontPage extends Component {
+  constructor() {
+    super();
+    this.state = {};
+  }
+
+  render() {
+    return (
+      <div>
+       <LoggedInFrontPage />
+       <Navbar expand="md" style={{backgroundImage: "linear-gradient(240.15deg, #cb2d3e 22.63%, #ef473a 68.74%)"}}>
+          <NavbarBrand href="/">reactstrap</NavbarBrand>
+          <NavbarToggler onClick={this.toggle} />
+          <Collapse isOpen={this.state.isOpen} navbar>
+            <Nav className="ml-auto" navbar>
+              <NavItem>
+                <NavLink href="/components/">Components</NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink href="https://github.com/reactstrap/reactstrap">GitHub</NavLink>
+              </NavItem>
+              <UncontrolledDropdown nav inNavbar>
+                <DropdownToggle nav caret>
+                  Options
+                </DropdownToggle>
+                <DropdownMenu right>
+                  <DropdownItem>
+                    Option 1
+                  </DropdownItem>
+                  <DropdownItem>
+                    Option 2
+                  </DropdownItem>
+                  <DropdownItem divider />
+                  <DropdownItem>
+                    Reset
+                  </DropdownItem>
+                </DropdownMenu>
+              </UncontrolledDropdown>
+            </Nav>
+          </Collapse>
+        </Navbar>
+       
+      </div>
+    );
+  }
+}

@@ -1,15 +1,65 @@
 import React from "react";
 import styled from "@emotion/styled";
+import {
+  Collapse,
+  Navbar,
+  NavbarToggler,
+  Nav,
+  UncontrolledDropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem
+} from "reactstrap";
+import logo from '../../assets/images/one2eat-logo.png'
 
-const NavHeader = styled.div`
-  display: flex;
-  justify-content: space-between;
-  padding: 0 24px;
-  height: 100px;
-  background: linear-gradient(240.15deg, #cb2d3e 22.63%, #ef473a 68.74%);
-  align-items: center;
+const FooterLogo = styled.img`
+  height: 100%;
+  width: 120px;
 `;
 
-export default function HeaderNav(props) {
-  return <NavHeader>{props.children}</NavHeader>;
+const MyAccountText = {
+  color: "#fff",
+  fontWeight: "bold"
+
+};
+
+export default class HeaderNav extends React.Component {
+  constructor(){
+    super();
+    this.state = {
+      isOpen: false
+    }
+  }
+
+  toggle = () => {
+    this.setState({
+      isOpen: !this.state.isOpen
+    });
+  }
+
+  render(){
+  return (
+    <div>
+      <Navbar expand="md">
+        <NavbarToggler onClick={this.toggle} />
+        <FooterLogo src={logo} alt="logo" />
+        <Collapse isOpen={this.state.isOpen} navbar>
+          <Nav className="ml-auto" navbar>
+            <UncontrolledDropdown nav inNavbar>
+              <DropdownToggle nav caret style={MyAccountText}>
+                My Account
+              </DropdownToggle>
+              <DropdownMenu right>
+                <DropdownItem>Option 1</DropdownItem>
+                <DropdownItem>Option 2</DropdownItem>
+                <DropdownItem divider />
+                <DropdownItem>Sign Out</DropdownItem>
+              </DropdownMenu>
+            </UncontrolledDropdown>
+          </Nav>
+        </Collapse>
+      </Navbar>
+    </div>
+  );
+}
 }

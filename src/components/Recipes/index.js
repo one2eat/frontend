@@ -22,8 +22,8 @@ const MyAccountText = {
 };
 
 const FooterLogo = styled.img`
-  height: 44px;
-  width: 193px;
+  height: 100%;
+  width: 120px;
 `;
 
 const FooterSearch = styled.input`

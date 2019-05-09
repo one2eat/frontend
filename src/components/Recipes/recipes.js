@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "@emotion/styled";
 import { Row, Col } from "reactstrap";
-import NasiGoreng from "../../assets/images/recipe-nasgor-image.jpg";
+import NasiGoreng from "../../assets/images/fried-rice-recipe.jpg";
 import TimeLogo from "../../assets/images/time-logo.png";
-import NasGor from "../../assets/images/nasgor-image.jpg";
+import NasGor from "../../assets/images/fried-rice.jpg";
 
 const TitleStyle = styled.h1`
   font-weight: bold;

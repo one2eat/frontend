@@ -3,7 +3,7 @@ import { Route } from "react-router-dom";
 
 import Home from "./components/HomePage";
 import SignIn from "./components/SignIn";
-import Recipes from "./components/Recipes";
+import Recipes from "./components/RecipesPage";
 import IndexLoggedIn from "./components/LoggedInFrontPage";
 
 const App = () => {

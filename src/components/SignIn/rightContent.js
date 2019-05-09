@@ -25,6 +25,10 @@ const FormInput = styled.input`
     font-weight: bold;
     color: #ec453b;
   }
+
+  &:focus {
+    outline: none;
+  }
 `;
 
 const FormButton = styled.button`

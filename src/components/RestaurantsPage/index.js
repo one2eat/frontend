@@ -11,7 +11,7 @@ import {
   DropdownItem
 } from "reactstrap";
 import logo from "../../assets/images/one2eat-logo.png";
-import { RecipesContent } from "./recipes";
+import { RestaurantsContent } from "./restaurants";
 
 const FooterBackground = {
   backgroundImage: "linear-gradient(256.23deg, #cb2d3e 22.63%, #ef473a 68.74%)"
@@ -33,7 +33,7 @@ const FooterSearch = styled.input`
   padding-left: 20px;
 `;
 
-export default class RecipesHeader extends React.Component {
+export default class RestaurantsHeader extends React.Component {
   constructor(props) {
     super(props);
 
@@ -73,7 +73,7 @@ export default class RecipesHeader extends React.Component {
             </Nav>
           </Collapse>
         </Navbar>
-        <RecipesContent />
+        <RestaurantsContent />
       </div>
     );
   }

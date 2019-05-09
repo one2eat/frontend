@@ -149,6 +149,7 @@ const AccountReviewStyle = styled.div`
   margin-left: 70px;
   margin-right: 500px;
   margin-top: 50px;
+  margin-bottom: 30px;
   border-radius: 10px;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
   background: linear-gradient(180deg, #ffffff 0%, rgba(255, 255, 255, 0) 100%),

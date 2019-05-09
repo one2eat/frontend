@@ -33,7 +33,7 @@ const FooterSearch = styled.input`
   padding-left: 20px;
 `;
 
-export default class Example extends React.Component {
+export default class RecipesHeader extends React.Component {
   constructor(props) {
     super(props);
 

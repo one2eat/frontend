@@ -2,11 +2,11 @@ import React from "react";
 import styled from "@emotion/styled";
 import { Row } from "reactstrap";
 import { Link } from "react-router-dom";
-import homeImage from "../../assets/images/home-image.jpg";
+import homeImage from "../../assets/images/home/home-image.jpg";
 import logo from "../../assets/images/one2eat-logo.png";
-import IngredientsLogo from "../../assets/images/ingredients.png";
-import restaurantsLogo from "../../assets/images/restaurants.png";
-import recommendationLogo from "../../assets/images/recommendation.png";
+import IngredientsLogo from "../../assets/images/home/ingredients.png";
+import restaurantsLogo from "../../assets/images/home/restaurants.png";
+import recommendationLogo from "../../assets/images/home/recommendation.png";
 
 const Container = styled.div`
   position: relative;

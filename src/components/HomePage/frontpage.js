@@ -38,13 +38,7 @@ const HomeButton = styled.button`
   margin-left: 50px;
   background: linear-gradient(90deg, #cb2d3e 14.71%, #ef473a 82.48%);
   cursor: pointer;
-
-  a {
-    text-decoration: none;
-    color: #fff;
-  }
-
-  a:hover {
+  &:hover {
     font-weight: bold;
   }
 `;
@@ -137,9 +131,9 @@ export const HomeFrontpage = () => {
           ONE2EAT is a service where you can find food inspiration and
           recommendation with your own ingredients.
         </ContentDescription>
-        <HomeButton>
-          <Link to="/signin">Get Started</Link>
-        </HomeButton>
+        <Link to="/signin">
+          <HomeButton>Get Started</HomeButton>
+        </Link>
       </ImageContent>
       <FrontpageText>Get The Best Recommendation</FrontpageText>
       <RoundedLogoStyle>

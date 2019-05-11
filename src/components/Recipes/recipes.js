@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "@emotion/styled";
 import { Row, Col } from "reactstrap";
-import NasiGoreng from "../../assets/images/fried-rice-recipe.jpg";
+import FriedRiceRecipe from "../../assets/images/fried-rice-recipe.jpg";
 import TimeLogo from "../../assets/images/time-logo.png";
-import NasGor from "../../assets/images/fried-rice.jpg";
+import FriedRice from "../../assets/images/fried-rice.jpg";
 
 const TitleStyle = styled.h1`
   font-weight: bold;
@@ -75,14 +75,14 @@ const InstructionText = styled.p`
   background: #c4c4c4;
 `;
 
-const NasGorImage = styled.img`
+const MenuImage = styled.img`
   height: 110px;
   width: 175px;
   margin-right: 20px;
   border-radius: 5px;
 `;
 
-const NasGorContext = styled.div`
+const MenuContext = styled.div`
   display: flex;
   flex-direction: row;
   width: 500px;
@@ -93,7 +93,7 @@ const NasGorContext = styled.div`
   background: #c4c4c4;
 `;
 
-const NasGorMafia = styled.p`
+const MenuDescription = styled.p`
   color: white;
   padding-top: 30px;
 `;
@@ -102,7 +102,7 @@ export const RecipesContent = () => {
   return (
     <div>
       <TitleStyle>Indonesian Fried Rice</TitleStyle>
-      <RecipesImage src={NasiGoreng} alt="nasi-goreng-recipe" />
+      <RecipesImage src={FriedRiceRecipe} alt="nasi-goreng-recipe" />
       <Row>
         <Col>
           <ContentTitleStyle>Ingredients</ContentTitleStyle>
@@ -158,13 +158,13 @@ export const RecipesContent = () => {
         </Col>
         <Col>
           <ContentTitleStyle>Available at</ContentTitleStyle>
-          <NasGorContext>
-            <NasGorImage src={NasGor} alt="nasi-goreng" />
+          <MenuContext>
+            <MenuImage src={FriedRice} alt="nasi-goreng" />
             <div>
               <p>Nasi Goreng</p>
-              <NasGorMafia>Nasi Goreng Mafia</NasGorMafia>
+              <MenuDescription>Nasi Goreng Mafia</MenuDescription>
             </div>
-          </NasGorContext>
+          </MenuContext>
         </Col>
       </Row>
     </div>

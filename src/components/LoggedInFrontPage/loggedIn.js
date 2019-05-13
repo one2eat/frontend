@@ -2,11 +2,13 @@ import React, { Component } from "react";
 import styled from "@emotion/styled";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+
 import HeaderNav from "./headerNav";
 import MainHeader from "../mainHeader";
 import FriedRice from "../../assets/images/recipes/fried-rice.jpg";
 import SearchLogo from "../../assets/images/search.png";
 import { search } from "../Redux/actions/searchAction";
+import { getMenuToSearch } from "../Redux/actions/getMenuToSearch";
 
 const SearchBar = styled.div`
   height: 615px;
@@ -70,7 +72,7 @@ const SuggestWrapper = styled.div`
   border-radius: 0 0 50px 50px;
   background-color: #fff;
   width: 950px;
-  left: 189px;
+  left: 159px;
   ul {
     list-style: none;
     li {
@@ -80,12 +82,27 @@ const SuggestWrapper = styled.div`
 `;
 
 class LoggedInFrontPage extends Component {
+  state = {
+    searchText: ""
+  };
+
   componentDidMount() {
     console.log(this.props);
   }
 
+  handleChange = async e => {
+    this.setState({
+      searchText: e.target.value
+    });
+    try {
+      this.props.getMenuToSearch(this.state.searchText);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   render() {
-    const { search, value, suggestions } = this.props;
+    const { suggestions } = this.props;
     return (
       <div>
         <MainHeader>
@@ -98,17 +115,16 @@ class LoggedInFrontPage extends Component {
               <SearchBarInput
                 type="text"
                 placeholder="Enter your ingredients, recipes, food name, or places"
-                value={value}
+                value={this.state.searchText}
                 onFocus={() => {}}
                 onBlur={() => {}}
-                onChange={e => search(e.target.value)}
+                onChange={this.handleChange}
               />
               <img src={SearchLogo} alt="search" />
               <SuggestWrapper>
                 {suggestions.map((suggest, index) => (
                   <ul key={index}>
-                    <li>;
-                    }}>{suggest.name}</li>
+                    <li>{suggest.name}</li>
                   </ul>
                 ))}
               </SuggestWrapper>
@@ -131,14 +147,14 @@ class LoggedInFrontPage extends Component {
 }
 
 const mapStateToProps = state => {
+  console.log(state);
   return {
-    value: state.value,
-    suggestions: state.suggestions
+    suggestions: state.loggedInReducer.suggestions.data
   };
 };
 
 const mapDispatchToProps = dispatch => {
-  return bindActionCreators({ search }, dispatch);
+  return bindActionCreators({ search, getMenuToSearch }, dispatch);
 };
 
 export default connect(

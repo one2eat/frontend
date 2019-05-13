@@ -2,9 +2,11 @@ import React from "react";
 import styled from "@emotion/styled";
 import { Formik, Form, ErrorMessage } from "formik";
 import { Row, Col } from "reactstrap";
-import validate from './validate-yup/validateYup';
-import getValidationSchema from './validate-yup/getValidationSchema'
+import axios from "axios";
+import { withRouter } from "react-router";
 
+import validate from "./validate-yup/validateYup";
+import getValidationSchema from "./validate-yup/getValidationSchema";
 import GoogleLogo from "../../assets/images/signIn/google.png";
 import FacebookLogo from "../../assets/images/signIn/facebook.png";
 
@@ -73,66 +75,84 @@ const SignWith = styled.div`
   }
 `;
 
+class SignInForm extends React.Component {
+  render() {
+    return (
+      <InsideRightContent>
+        <WidthForm>
+          <FormTitle>SIGN IN</FormTitle>
+          <Formik
+            initialValues={{ email: "", password: "" }}
+            validationSchema={validate(getValidationSchema)}
+            onSubmit={(values, { setSubmitting }) => {
+              axios
+                .post(
+                  `http://ec2-18-218-96-166.us-east-2.compute.amazonaws.com/users/signin`,
+                  {
+                    email: values.email,
+                    password: values.password
+                  }
+                )
+                .then(response => {
+                  console.log(response);
+                  setSubmitting(false);
+                  this.props.history.push("/logged-in");
+                })
+                .catch(error => {
+                  console.log(error);
+                });
+            }}
+          >
+            {({ isSubmitting, handleChange, values, setSubmitting }) => (
+              <Form>
+                <FormInput
+                  type="email"
+                  autoComplete="current-email"
+                  name="email"
+                  onChange={handleChange}
+                  placeholder="Email Address"
+                />
+                <ErrorMessage name="email" component="span" />
 
+                <FormInput
+                  type="password"
+                  autoComplete="current-password"
+                  name="password"
+                  placeholder="Password"
+                  onChange={handleChange}
+                  value={values.password}
+                />
+                <ErrorMessage name="password" component="span" />
 
-const SignInForm = () => (
-  <InsideRightContent>
-    <WidthForm>
-      <FormTitle>SIGN IN</FormTitle>
-      <Formik
-        initialValues={{ email: "", password: "" }}
-        validationSchema={validate(getValidationSchema)}
-        onSubmit={(values, { setSubmitting }) => {
-          setTimeout(() => {
-            alert(JSON.stringify(values, null, 2));
-            setSubmitting(false);
-          }, 500);
-        }}
-      >
-        {({ isSubmitting, handleChange, values, setSubmitting }) => (
-          <Form>
-            <FormInput
-              type="email"
-              autoComplete="current-email"
-              name="email"
-              onChange={handleChange}
-              placeholder="Email Address"
-            />
-            <ErrorMessage name="email" component="span" />
+                <FormButton
+                  type="submit"
+                  disabled={values.password.length > 0 ? false : true}
+                >
+                  {isSubmitting ? "Loading" : "Sign In"}
+                </FormButton>
+              </Form>
+            )}
+          </Formik>
+          <OrSignInWith>Or sign in with</OrSignInWith>
+          <Row>
+            <Col>
+              <SignWith>
+                <img src={GoogleLogo} alt="google" width="35px" />
+                <span> Google</span>
+              </SignWith>
+            </Col>
+            <Col>
+              <SignWith>
+                <img src={FacebookLogo} alt="facebook" width="35px" />
+                <span>Facebook</span>
+              </SignWith>
+              <div>Don't have an account yet, sign up here</div>
+            </Col>
+          </Row>
+        </WidthForm>
+      </InsideRightContent>
+    );
+  }
+}
 
-            <FormInput
-              type="password"
-              autoComplete="current-password"
-              name="password"
-              placeholder="Password"
-              onChange={handleChange}
-              value={values.password}
-            />
-            <ErrorMessage name="password" component="span" />
-
-            <FormButton type="submit" disabled={values.password.length > 0 ? false : true}>
-              {isSubmitting ? "Loading" : "Sign In"}
-            </FormButton>
-          </Form>
-        )}
-      </Formik>
-      <OrSignInWith>Or sign in with</OrSignInWith>
-      <Row>
-        <Col>
-          <SignWith>
-            <img src={GoogleLogo} alt="google" width="35px" />
-            <span> Google</span>
-          </SignWith>
-        </Col>
-        <Col>
-          <SignWith>
-            <img src={FacebookLogo} alt="facebook" width="35px" />
-            <span>Facebook</span>
-          </SignWith>
-        </Col>
-      </Row>
-    </WidthForm>
-  </InsideRightContent>
-);
-
-export default SignInForm;
+export default withRouter(SignInForm);

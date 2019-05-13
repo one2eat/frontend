@@ -31,6 +31,10 @@ const FooterSearch = styled.input`
   border-radius: 20px;
   margin-left: 100px;
   padding-left: 20px;
+
+  &:focus {
+    outline: none;
+  }
 `;
 
 export default class RecipesHeader extends React.Component {

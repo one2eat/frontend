@@ -8,6 +8,7 @@
     "axios": "0.18.0",
     "bootstrap": "4.3.1",
     "formik": "1.5.4",
+    "lodash.debounce": "4.0.8",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-redux": "7.0.3",
@@ -38,5 +39,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "resolutions": {
+    "babel-core": "7.0.0-bridge.0"
   }
 }

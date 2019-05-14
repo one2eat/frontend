@@ -1,7 +1,6 @@
 import axios from "axios";
 import debounce from "lodash.debounce";
-
-const GET_MENU_TO_SEARCH = "GET_MENU_TO_SEARCH";
+import { GET_MENU_TO_SEARCH } from "./types";
 
 export const getMenuToSearch = value =>
   debounce(async dispatch => {

@@ -2,6 +2,7 @@ import React from "react";
 import styled from "@emotion/styled";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import { Link } from "react-router-dom";
 import {
   Collapse,
   Navbar,
@@ -114,7 +115,9 @@ class RestaurantsHeader extends React.Component {
     return (
       <div>
         <Navbar expand="md" style={FooterBackground}>
-          <FooterLogo src={logo} alt="logo" />
+          <Link to="/logged-in">
+            <FooterLogo src={logo} alt="logo" />
+          </Link>
           <FooterSearchWrapper>
             <FooterSearch
               type="search"

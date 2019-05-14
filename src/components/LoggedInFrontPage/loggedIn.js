@@ -53,9 +53,12 @@ const SearchBarWrapper = styled.div`
   position: relative;
   img {
     position: absolute;
-    right: 260px;
+    right: 200px;
     top: 22px;
     opacity: 0.5;
+  }
+  @media (max-width: 1440px) {
+    right: 180px;
   }
 `;
 
@@ -64,7 +67,7 @@ const SuggestWrapper = styled.div`
     content: "";
     display: block;
     border-top: 1px solid #757575;
-    width: 844px;
+    width: 870px;
     position: absolute;
     left: 38px;
   }
@@ -78,6 +81,10 @@ const SuggestWrapper = styled.div`
     li {
       text-align: left;
     }
+  }
+
+  @media (max-width: 1440px) {
+    left: 138px;
   }
 `;
 

@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 import { Formik, Form, ErrorMessage } from "formik";
 import { Row, Col } from "reactstrap";
 import axios from "axios";
-import { withRouter } from "react-router";
+import {connect} from 'react-redux'
 
 import validate from "./validate-yup/validateYup";
 import getValidationSchema from "./validate-yup/getValidationSchema";
@@ -76,6 +76,10 @@ const SignWith = styled.div`
 `;
 
 class SignInForm extends React.Component {
+  componentDidMount(){
+    console.log(this.props);
+    
+  }
   render() {
     return (
       <InsideRightContent>
@@ -155,4 +159,9 @@ class SignInForm extends React.Component {
   }
 }
 
-export default withRouter(SignInForm);
+const mapStateToProps = state => {
+  console.log(state);
+  
+}
+
+export default connect(mapStateToProps)(SignInForm);

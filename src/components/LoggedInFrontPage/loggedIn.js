@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import styled from "@emotion/styled";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import { ToastContainer } from "react-toastify";
 
 import HeaderNav from "./headerNav";
 import MainHeader from "../mainHeader";
@@ -96,10 +97,6 @@ class LoggedInFrontPage extends Component {
     searchText: ""
   };
 
-  componentDidMount() {
-    console.log(this.props);
-  }
-
   handleChange = e => {
      this.setState(
       {searchText: e.target.value},
@@ -111,6 +108,7 @@ class LoggedInFrontPage extends Component {
     const { suggestions } = this.props;
     return (
       <div>
+      <ToastContainer />
         <MainHeader>
           <HeaderNav />
           <SearchBar>
@@ -153,7 +151,6 @@ class LoggedInFrontPage extends Component {
 }
 
 const mapStateToProps = state => {
-  console.log(state);
   return {
     suggestions: state.loggedInReducer.suggestions.data
   };

@@ -50,22 +50,20 @@ const SuggestWrapper = styled.div`
     content: "";
     display: block;
     border-top: 1px solid #757575;
-    width: 410px;
+    width: 415px;
     position: absolute;
     left: 17px;
-    top: 1px;
-    opacity: 0.5;
-}
+    opacity: 0.28;
   }
+
   position: absolute;
   border-radius: 0 0 28px 28px;
   background-color: #fff;
   width: 450px;
   height: auto;
   top: 40px;
-  margin-left: 98px;
+  left: 236px;
   box-shadow: 0 4px 6px 0 rgba(32, 33, 36, 0.28);
-  z-index: 1;
   ul {
     padding: 20px;
     list-style: none;
@@ -73,10 +71,7 @@ const SuggestWrapper = styled.div`
       text-align: left;
     }
   }
-
-  @media (max-width: 1440px) {
-    left: 138px;
-  }
+  z-index: 1;
 `;
 
 const FooterSearchWrapper = styled.div`
@@ -86,22 +81,16 @@ const FooterSearchWrapper = styled.div`
 class RestaurantsHeader extends React.Component {
   constructor(props) {
     super(props);
-
-    this.toggle = this.toggle.bind(this);
     this.state = {
       isOpen: false,
       searchText: ""
     };
   }
-  toggle() {
+  toggle = () => {
     this.setState({
       isOpen: !this.state.isOpen
     });
-  }
-
-  componentDidMount() {
-    console.log(this.props);
-  }
+  };
 
   handleChange = event => {
     this.setState(
@@ -158,7 +147,6 @@ class RestaurantsHeader extends React.Component {
   }
 }
 const mapStateToProps = state => {
-  console.log(state);
   return {
     suggestions: state.loggedInReducer.suggestions.data
   };

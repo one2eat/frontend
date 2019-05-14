@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import styled from "@emotion/styled";
 import { Col } from "reactstrap";
 
-import SignInForm from "./rightContent";
+import LogInForm from "./logInForm";
 import logo from "../../assets/images/one2eat-logo.png";
 
 const SignInBackgroundPage = styled.div`
@@ -72,7 +72,7 @@ export default class SignIn extends Component {
             </InsideLeftContent>
           </Col>
           <Col>
-            <SignInForm />
+            <LogInForm />
           </Col>
         </RowFlex>
         <Footer>© Copyright 2019, ONE2EAT.CO</Footer>

@@ -3,6 +3,7 @@ import { toast } from "react-toastify";
 import { push } from "connected-react-router";
 
 import browserStorage from "../browserStorage";
+// import requestAPI from '../requestAPI'
 
 // action creator when begin
 export const loginUserBegin = () => ({
@@ -44,11 +45,16 @@ export const loginUser = payload => {
 
     // Get the response after requesting to backend API
     // Use Promise instead of async/await because it's tricky in thunk
+
+    // Also able to use
+    // requestAPI({
+    // method: 'post',
+    // url: '/users/login',
+    //  data: payload
+    // })
+
     axios
-      .post(
-        "http://ec2-18-218-96-166.us-east-2.compute.amazonaws.com/users/signin",
-        payload
-      )
+      .post(`${process.env.REACT_APP_BACKEND_URI}/users/signin`, payload)
       .then(response => {
         // LOGIN_USER_SUCCESS
         dispatch(loginUserSuccess(response));

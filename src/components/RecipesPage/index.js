@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import styled from "@emotion/styled";
+import { Link } from "react-router-dom";
 import {
   Collapse,
   Navbar,
@@ -113,7 +114,9 @@ class RecipesHeader extends React.Component {
     return (
       <div>
         <Navbar expand="md" style={FooterBackground}>
-          <FooterLogo src={logo} alt="logo" />
+          <Link to="/logged-in">
+            <FooterLogo src={logo} alt="logo" />
+          </Link>
           <FooterSearchWrapper>
             <FooterSearch
               type="search"

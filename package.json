@@ -23,13 +23,13 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build && ./create-redirects.sh",
+    "build": "react-scripts build && echo '/*    /index.html   200' > build/_redirects",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/one2eat/frontend"
+    "url": "https://github.com/one2eat/frontend"
   },
   "keywords": [
     "one2eat",

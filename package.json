@@ -1,5 +1,5 @@
 {
-  "name": "frontend",
+  "name": "one2eat-frontend",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -23,9 +23,22 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "react-scripts build && ./create-redirects.sh",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/one2eat/frontend"
+  },
+  "keywords": [
+    "one2eat",
+    "frontend"
+  ],
+  "author": "ONE2EAT TEAM",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/one2eat/frontend/issues"
   },
   "eslintConfig": {
     "extends": "react-app"

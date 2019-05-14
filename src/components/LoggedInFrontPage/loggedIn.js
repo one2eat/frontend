@@ -31,10 +31,15 @@ const SearchBarInput = styled.input`
   padding-left: 40px;
   font-size: 20px;
   border-bottom-left-radius: ${props => (props.value.length > 0 ? 0 : "")};
-  border-bottom-right-radius: ${props => (props.value.length ? 0 : "")};
+  border-bottom-right-radius: ${props => (props.value.length > 0 ? 0 : "")};
 
   &:focus {
     outline: none;
+    box-shadow: 0 1px 6px 0 rgba(32,33,36,0.28)
+  }
+
+  &:hover {
+    box-shadow: 0 1px 6px 0 rgba(32,33,36,0.28)
   }
 `;
 
@@ -73,6 +78,7 @@ const SuggestWrapper = styled.div`
   background-color: #fff;
   width: 950px;
   left: 159px;
+  box-shadow: 0 4px 6px 0 rgba(32,33,36,0.28);
   ul {
     list-style: none;
     li {
@@ -94,15 +100,11 @@ class LoggedInFrontPage extends Component {
     console.log(this.props);
   }
 
-  handleChange = async e => {
-    this.setState({
-      searchText: e.target.value
-    });
-    try {
-      this.props.getMenuToSearch(this.state.searchText);
-    } catch (e) {
-      console.log(e);
-    }
+  handleChange = e => {
+     this.setState(
+      {searchText: e.target.value},
+      this.props.getMenuToSearch(this.state.searchText)
+    );
   };
 
   render() {

@@ -222,21 +222,17 @@ export const RecipesContent = () => {
               </OverrideColInstructions>
             </Row>
             <InstructionText>
-              <p>
-                1. Bring the water to a boil and pour in the rice (no need to
-                rinse). Give it a stir so that the rice is covered by the water,
-                put a lid on the pan and cook for 20 minutes on the lowest heat
-                on your smallest burner.
-              </p>
+              1. Bring the water to a boil and pour in the rice (no need to
+              rinse). Give it a stir so that the rice is covered by the water,
+              put a lid on the pan and cook for 20 minutes on the lowest heat on
+              your smallest burner.
             </InstructionText>
             <InstructionText>
-              <p>
-                2. After 20 minutes, take the lid off and spread out the rice
-                onto a tray. Leave to cool, uncovered for 20-30 minutes (until
-                room temperature), then cover with clingfilm/plastic wrap and
-                place in the fridge until you're ready to use (make sure you use
-                the rice within 24 hours).
-              </p>
+              2. After 20 minutes, take the lid off and spread out the rice onto
+              a tray. Leave to cool, uncovered for 20-30 minutes (until room
+              temperature), then cover with clingfilm/plastic wrap and place in
+              the fridge until you're ready to use (make sure you use the rice
+              within 24 hours).
             </InstructionText>
           </Col>
           <Col>

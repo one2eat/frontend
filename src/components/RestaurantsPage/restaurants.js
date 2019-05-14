@@ -148,9 +148,7 @@ export const RestaurantsContent = () => {
   return (
     <Container>
       <LawlessPicture src={LawlessRestaurants} alt="lawless" />
-      <TitleText>
-        <h1>Lawless Burger</h1>
-      </TitleText>
+      <TitleText>Lawless Burger</TitleText>
       <Address>
         <div>
           <AddressTextTitle>Address</AddressTextTitle>

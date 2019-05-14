@@ -57,9 +57,6 @@ const SearchBarWrapper = styled.div`
     top: 22px;
     opacity: 0.5;
   }
-  @media (max-width: 1440px) {
-    right: 180px;
-  }
 `;
 
 const SuggestWrapper = styled.div`

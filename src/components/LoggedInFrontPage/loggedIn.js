@@ -3,11 +3,13 @@ import styled from "@emotion/styled";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { ToastContainer } from "react-toastify";
-import { Container } from "reactstrap";
+
+import { Container, Row, Col } from "reactstrap";
 
 import { Footer } from "../Footer";
 import HeaderNav from "./headerNav";
 import MainHeader from "../mainHeader";
+import RestaurantRecommendationCard from "../RestaurantRecommendationCard";
 
 import SearchLogo from "../../assets/images/search.png";
 import { search } from "../Redux/actions/searchAction";
@@ -136,6 +138,31 @@ class LoggedInFrontPage extends Component {
           <Title>
             Popular Restaurant around <b>Kemang</b>
           </Title>
+          <Spacer />
+
+          <Row>
+            <Col>
+              <RestaurantRecommendationCard
+                image="https://anakjajan.files.wordpress.com/2018/06/cover3.jpg?w=672&h=372&crop=1"
+                name="Lawless"
+                star={4}
+              />
+            </Col>
+            <Col>
+              <RestaurantRecommendationCard
+                image="https://anakjajan.files.wordpress.com/2018/06/cover3.jpg?w=672&h=372&crop=1"
+                name="Lawless"
+                star={3}
+              />
+            </Col>
+            <Col>
+              <RestaurantRecommendationCard
+                image="https://anakjajan.files.wordpress.com/2018/06/cover3.jpg?w=672&h=372&crop=1"
+                name="Lawless"
+                star={5}
+              />
+            </Col>
+          </Row>
         </Container>
         <Spacer />
 

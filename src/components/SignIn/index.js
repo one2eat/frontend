@@ -7,7 +7,11 @@ import logo from "../../assets/images/one2eat-logo.png";
 
 const SignInBackgroundPage = styled.div`
   background: linear-gradient(270deg, #cb2d3e 30.9%, #ef473a 77.03%);
-  height: 720px;
+  min-height: 100vh;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 `;
 
 const HomeLogo = styled.img`

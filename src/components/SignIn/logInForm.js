@@ -10,6 +10,7 @@ import getValidationSchema from "./validate-yup/getValidationSchema";
 import GoogleLogo from "../../assets/images/signIn/google.png";
 import FacebookLogo from "../../assets/images/signIn/facebook.png";
 import { loginUser } from "../Redux/actions/logIn";
+import { Link } from 'react-router-dom'
 
 const FormTitle = styled.h1`
   color: #fff;
@@ -80,6 +81,14 @@ const SignWith = styled.div`
   }
 `;
 
+const NoAccountLink = styled(Link)`
+  color: #fff;
+  text-align: center;
+  margin: 24px 0;
+  // font-size: 20px;
+  // font-weight: bold;
+`
+
 class LogInForm extends React.Component {
   render() {
     return (
@@ -129,8 +138,9 @@ class LogInForm extends React.Component {
               </Form>
             )}
           </Formik>
-          <OrSignInWith>Or sign in with</OrSignInWith>
-          <Row>
+          <div className="mb-4"></div>
+          {/* <OrSignInWith>Or sign in with</OrSignInWith> */}
+          {/* <Row>
             <Col>
               <SignWith>
                 <img src={GoogleLogo} alt="google" width="35px" />
@@ -143,8 +153,8 @@ class LogInForm extends React.Component {
                 <span>Facebook</span>
               </SignWith>
             </Col>
-          </Row>
-          <div>Don't have an account yet, sign up here</div>
+          </Row> */}
+          <NoAccountLink to="/register">Don't have an account yet? <b>SIGN UP Here!</b></NoAccountLink>
         </WidthForm>
       </InsideRightContent>
     );

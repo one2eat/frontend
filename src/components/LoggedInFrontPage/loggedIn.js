@@ -3,30 +3,35 @@ import styled from "@emotion/styled";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { ToastContainer } from "react-toastify";
+import { Container } from "reactstrap";
 
+import { Footer } from "../Footer";
 import HeaderNav from "./headerNav";
 import MainHeader from "../mainHeader";
-import FriedRice from "../../assets/images/recipes/fried-rice.jpg";
+
 import SearchLogo from "../../assets/images/search.png";
 import { search } from "../Redux/actions/searchAction";
 import { getMenuToSearch } from "../Redux/actions/getMenuToSearch";
 
 const SearchBar = styled.div`
-  height: 615px;
+  min-height: 100vh;
+  height: 100%;
   line-height: 4;
   padding: 100px;
   text-align: center;
 `;
 
 const SearchBarTitle = styled.div`
-  font-size: 48px;
+  font-size: 2.5rem;
   color: #fff;
   font-weight: bold;
+  position: relative;
 `;
 
 const SearchBarInput = styled.input`
   border: none;
-  width: 950px;
+  width: 100%;
+
   height: 80px;
   border-radius: 50px;
   padding-left: 40px;
@@ -36,60 +41,48 @@ const SearchBarInput = styled.input`
 
   &:focus {
     outline: none;
-    box-shadow: 0 1px 6px 0 rgba(32,33,36,0.28)
+    box-shadow: 0 1px 6px 0 rgba(32, 33, 36, 0.28);
   }
 
   &:hover {
-    box-shadow: 0 1px 6px 0 rgba(32,33,36,0.28)
+    box-shadow: 0 1px 6px 0 rgba(32, 33, 36, 0.28);
   }
 `;
 
-const SearchResult = styled.div`
-  width: 1440px;
-  margin: 0 auto;
-  padding: 100px;
-`;
-
-const SearchTitle = styled.div`
-  border-bottom: 5px solid #ca2d3e;
-  margin-bottom: 50px;
-`;
-
 const SearchBarWrapper = styled.div`
+  width: 80%;
   position: relative;
+  margin: auto;
+
   img {
     position: absolute;
-    right: 200px;
+    right: 20px;
     top: 22px;
     opacity: 0.5;
+    /* width: 20px; */
   }
 `;
 
 const SuggestWrapper = styled.div`
-  &:before {
-    content: "";
-    display: block;
-    border-top: 1px solid #757575;
-    width: 870px;
-    position: absolute;
-    left: 38px;
-  }
   position: absolute;
+  background: #fff;
   border-radius: 0 0 50px 50px;
-  background-color: #fff;
-  width: 950px;
-  left: 159px;
-  box-shadow: 0 4px 6px 0 rgba(32,33,36,0.28);
+  width: 100%;
+  box-shadow: 0 4px 6px 0 rgba(32, 33, 36, 0.28);
   ul {
     list-style: none;
     li {
       text-align: left;
     }
   }
+`;
 
-  @media (max-width: 1440px) {
-    left: 138px;
-  }
+const Spacer = styled.div`
+  margin: 2rem;
+`;
+
+const Title = styled.div`
+  font-size: 1.4rem;
 `;
 
 class LoggedInFrontPage extends Component {
@@ -98,8 +91,8 @@ class LoggedInFrontPage extends Component {
   };
 
   handleChange = e => {
-     this.setState(
-      {searchText: e.target.value},
+    this.setState(
+      { searchText: e.target.value },
       this.props.getMenuToSearch(this.state.searchText)
     );
   };
@@ -108,7 +101,7 @@ class LoggedInFrontPage extends Component {
     const { suggestions } = this.props;
     return (
       <div>
-      <ToastContainer />
+        <ToastContainer />
         <MainHeader>
           <HeaderNav />
           <SearchBar>
@@ -126,25 +119,27 @@ class LoggedInFrontPage extends Component {
               />
               <img src={SearchLogo} alt="search" />
               <SuggestWrapper>
-                {suggestions.map((suggest, index) => (
-                  <ul key={index}>
-                    <li>{suggest.name}</li>
+                {suggestions.length > 0 && (
+                  <ul>
+                    {suggestions.map((suggest, index) => (
+                      <li key="index">{suggest.name}</li>
+                    ))}
                   </ul>
-                ))}
+                )}
               </SuggestWrapper>
             </SearchBarWrapper>
           </SearchBar>
         </MainHeader>
-        <div>
-          <SearchResult>
-            <SearchTitle>
-              <h1>Popular Recipes</h1>
-            </SearchTitle>
-            <div>
-              <img src={FriedRice} alt="the menu" />
-            </div>
-          </SearchResult>
-        </div>
+
+        <Container>
+          <Spacer />
+          <Title>
+            Popular Restaurant around <b>Kemang</b>
+          </Title>
+        </Container>
+        <Spacer />
+
+        <Footer />
       </div>
     );
   }

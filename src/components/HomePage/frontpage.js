@@ -87,11 +87,6 @@ const OverrideCol = styled(Col)`
   align-items: center;
 `;
 
-const FooterSpacer = styled.div`
-  display: flex;
-  justify-content: center;
-`;
-
 export const HomeFrontpage = () => {
   return (
     <React.Fragment>

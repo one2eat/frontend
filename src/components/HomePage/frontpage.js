@@ -2,13 +2,14 @@ import React from "react";
 import styled from "@emotion/styled";
 import { Row, Container, Col } from "reactstrap";
 import { Link } from "react-router-dom";
+
 import homeImage from "../../assets/images/home/home-image.jpg";
 import logo from "../../assets/images/one2eat-logo.png";
 import IngredientsLogo from "../../assets/images/home/ingredients.png";
 import restaurantsLogo from "../../assets/images/home/restaurants.png";
 import recommendationLogo from "../../assets/images/home/recommendation.png";
 
-
+import { Footer } from "../Footer";
 
 const BackgroundPicture = styled.img`
   min-height: 100vh;
@@ -35,7 +36,6 @@ const HomeButton = styled.button`
   margin-left: 50px;
   background: linear-gradient(90deg, #cb2d3e 14.71%, #ef473a 82.48%);
   cursor: pointer;
-  
 
   &:hover {
     background: linear-gradient(90deg, #ef473a 14.71%, #ef473a 82.48%);
@@ -60,28 +60,6 @@ const FrontpageText = styled.h3`
   border-bottom: 2px solid #ca2d3e;
 `;
 
-const FooterBackground = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 65px;
-  min-width: 100vw;
-  width: 100%;
-  padding: 20px;
-  background: linear-gradient(90deg, #2c3e50 29.37%, #4c9aaf 100%);
-  
-`;
-
-const FooterCopyright = styled.div`
-  color: #fff;
-`;
-
-const FooterLogo = styled.img`
-  height: 25px;
-  // width: 100px;
-  
-`;
-
 const RoundedLogo = styled.div`
   display: flex;
   align-items: center;
@@ -91,7 +69,7 @@ const RoundedLogo = styled.div`
   border-radius: 50%;
   margin-bottom: 24px;
   background: linear-gradient(256.23deg, #cb2d3e 22.63%, #ef473a 68.74%);
-  
+
   img {
     width: 40%;
   }
@@ -107,14 +85,12 @@ const OverrideCol = styled(Col)`
   display: flex;
   flex-direction: column;
   align-items: center;
-`
+`;
 
 const FooterSpacer = styled.div`
   display: flex;
   justify-content: center;
-  
-`
-
+`;
 
 export const HomeFrontpage = () => {
   return (
@@ -126,16 +102,16 @@ export const HomeFrontpage = () => {
           <ContentDescription>
             ONE2EAT is a service where you can find food inspiration and
             recommendation with your own ingredients.
-        </ContentDescription>
+          </ContentDescription>
           <Link to="/signin">
             <HomeButton>Get Started</HomeButton>
           </Link>
         </Container>
       </ImageContent>
       <Container>
-        <div className="mb-4"></div>
+        <div className="mb-4" />
         <FrontpageText>Get The Best Recommendation</FrontpageText>
-        <div className="mb-4"></div>
+        <div className="mb-4" />
 
         <RoundedLogoStyle>
           <Row>
@@ -150,25 +126,18 @@ export const HomeFrontpage = () => {
                 <img src={restaurantsLogo} alt="restaurants-logo" />
               </RoundedLogo>
               Find the best restaurant
-          </OverrideCol>
+            </OverrideCol>
             <OverrideCol>
               <RoundedLogo>
                 <img src={recommendationLogo} alt="rescommendation-logo" />
               </RoundedLogo>
               Get the best recommendation
-          </OverrideCol>
+            </OverrideCol>
           </Row>
         </RoundedLogoStyle>
       </Container>
-      <div className="mb-4"></div>
-      <FooterBackground>
-
-        <FooterLogo src={logo} alt="footer-logo" />
-        <FooterCopyright>
-          © Copyright 2019, ONE2EAT.CO
-          </FooterCopyright>
-
-      </FooterBackground>
+      <div className="mb-4" />
+      <Footer />
     </React.Fragment>
   );
 };

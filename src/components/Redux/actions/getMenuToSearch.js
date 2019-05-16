@@ -1,26 +1,25 @@
 import axios from "axios";
-import debounce from "lodash.debounce";
-import { GET_MENU_TO_SEARCH } from "./types";
 
-export const getMenuToSearch = value =>
-  debounce(async dispatch => {
-    if (value.length >= 3) {
-      await axios
-        .get(
-          `${process.env.REACT_APP_BACKEND_URI}/search?q=${value}`
-        )
-        .then(response => {
-          dispatch({
-            type: GET_MENU_TO_SEARCH,
-            payload: response.data
-          });
-        })
+export const searchMenuBegin = () => ({
+  type: "SEARCH_MENU_BEGIN"
+});
 
-        .catch(error => console.log(error));
-    } else {
-      dispatch({
-        type: GET_MENU_TO_SEARCH,
-        payload: { data: [] }
-      });
-    }
-  });
+export const searchMenuSuccess = response => ({
+  type: "SEARCH_MENU_SUCCESS",
+  payload: response.data
+});
+
+export const clearMenu = () => ({
+  type: "CLEAR_MENU"
+});
+
+export const getMenuToSearch = value => async dispatch => {
+  dispatch(searchMenuBegin());
+
+  await axios
+    .get(`${process.env.REACT_APP_BACKEND_URI}/search?q=${value}`)
+    .then(response => {
+      dispatch(searchMenuSuccess(response));
+    })
+    .catch(error => console.log(error));
+};

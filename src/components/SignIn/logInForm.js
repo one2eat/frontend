@@ -77,12 +77,10 @@ class LogInForm extends React.Component {
             initialValues={{ email: "", password: "" }}
             validationSchema={validate(getValidationSchema)}
             onSubmit={async (values, { setSubmitting }) => {
-              await this.props.dispatch(
-                loginUser({
-                  email: values.email,
-                  password: values.password
-                })
-              );
+              await this.props.loginUser({
+                email: values.email,
+                password: values.password
+              });
             }}
           >
             {({ isSubmitting, handleChange, values }) => (
@@ -150,5 +148,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { openSignup }
+  { openSignup, loginUser }
 )(LogInForm);

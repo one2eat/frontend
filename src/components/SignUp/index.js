@@ -1,13 +1,12 @@
 import React from "react";
 import styled from "@emotion/styled";
-import { ToastContainer } from "react-toastify";
 import { Formik, Form, ErrorMessage } from "formik";
 import { connect } from "react-redux";
 
 import validate from "./validate-yup/validateYup";
 import getValidationSchema from "./validate-yup/getValidationSchema";
-import { loginUser } from "../Redux/actions/logIn";
 import { openLogin } from "../Redux/actions/sign";
+import { signupUser } from "../Redux/actions/signup";
 
 const FormTitle = styled.h1`
   color: #fff;
@@ -67,23 +66,23 @@ const NoAccountLink = styled.div`
 `;
 
 class SignUpForm extends React.Component {
+  componentDidMount() {
+    console.log(this.props);
+  }
   render() {
     return (
       <InsideRightContent>
-        <ToastContainer />
         <WidthForm>
           <FormTitle>SIGN UP</FormTitle>
           <Formik
             initialValues={{ name: "", email: "", password: "" }}
             validationSchema={validate(getValidationSchema)}
             onSubmit={async (values, { setSubmitting }) => {
-              await this.props.dispatch(
-                loginUser({
-                  name: values.name,
-                  email: values.email,
-                  password: values.password
-                })
-              );
+              await this.props.signupUser({
+                name: values.name,
+                email: values.email,
+                password: values.password
+              });
             }}
           >
             {({ isSubmitting, handleChange, values }) => (
@@ -156,5 +155,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { openLogin }
+  { openLogin, signupUser }
 )(SignUpForm);

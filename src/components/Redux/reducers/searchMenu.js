@@ -1,4 +1,3 @@
-const GET_MENU_TO_SEARCH = "GET_MENU_TO_SEARCH";
 const SEARCH = "SEARCH";
 
 const initialState = {
@@ -7,10 +6,11 @@ const initialState = {
   suggestions: {
     message: "",
     data: []
-  }
+  },
+  isSearching: false
 };
 
-const dashboard = (state = initialState, action) => {
+const searchMenu = (state = initialState, action) => {
   switch (action.type) {
     case SEARCH:
       const { value } = action;
@@ -21,15 +21,28 @@ const dashboard = (state = initialState, action) => {
             val.name.toLocaleLowerCase().includes(value)
           ));
       return { ...state, value, suggestions };
-      
-    case GET_MENU_TO_SEARCH:
+    case "SEARCH_MENU_BEGIN":
+      return {
+        ...state,
+        isSearching: true
+      };
+    case "SEARCH_MENU_SUCCESS":
       return {
         ...state,
         suggestions: action.payload,
+        isSearching: false
+      };
+    case "CLEAR_MENU":
+      return {
+        ...state,
+        suggestions: {
+          message: "",
+          data: []
+        }
       };
     default:
       return state;
   }
 };
 
-export default dashboard;
+export default searchMenu;

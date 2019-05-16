@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "@emotion/styled";
 import { Row, Col } from "reactstrap";
+
 import LawlessRestaurants from "../../assets/images/restaurants/lawless.jpg";
 import PhoneLogo from "../../assets/images/restaurants/phone-logo.svg";
 import Burger from "../../assets/images/restaurants/lawless-burger.jpg";

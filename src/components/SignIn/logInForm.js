@@ -64,6 +64,9 @@ const NoAccountLink = styled.div`
   margin: 24px 0;
   // font-size: 20px;
   // font-weight: bold;
+  &:hover b {
+    color: #d5cdcd;
+  }
 `;
 
 class LogInForm extends React.Component {
@@ -104,12 +107,7 @@ class LogInForm extends React.Component {
                 />
                 <ErrorMessage name="password" component="span" />
 
-                <FormButton
-                  type="submit"
-                  
-                >
-                  Sign In
-                </FormButton>
+                <FormButton type="submit">Sign In</FormButton>
               </Form>
             )}
           </Formik>
@@ -138,13 +136,7 @@ class LogInForm extends React.Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    isLoading: state.login.isLoading
-  };
-};
-
 export default connect(
-  mapStateToProps,
+  null,
   { openSignup, loginUser }
 )(LogInForm);

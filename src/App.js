@@ -23,7 +23,7 @@ const App = () => {
           <Route path="/" exact component={Home} />
           <Route path="/signin" exact component={SignIn} />
           <Route path="/recipes" exact component={Recipes} />
-          <Route path="/logged-in" exact component={IndexLoggedIn} />
+          <Route path="/dashboard" exact component={IndexLoggedIn} />
           <Route path="/restaurants" exact component={Restaurants} />
         </Switch>
       </ConnectedRouter>

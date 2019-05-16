@@ -1,9 +1,11 @@
 import React, { Component } from "react";
 import styled from "@emotion/styled";
 import { Col } from "reactstrap";
+import { connect } from "react-redux";
 
 import LogInForm from "./logInForm";
 import logo from "../../assets/images/one2eat-logo.png";
+import SignUpForm from "../SignUp";
 
 const SignInBackgroundPage = styled.div`
   background: linear-gradient(270deg, #cb2d3e 30.9%, #ef473a 77.03%);
@@ -59,7 +61,7 @@ const RowFlex = styled.div`
   min-height: calc(720px - 50px);
 `;
 
-export default class SignIn extends Component {
+class SignIn extends Component {
   render() {
     return (
       <SignInBackgroundPage>
@@ -76,7 +78,8 @@ export default class SignIn extends Component {
             </InsideLeftContent>
           </Col>
           <Col>
-            <LogInForm />
+            {this.props.signState.openLogin && <LogInForm />}
+            {this.props.signState.openSignup && <SignUpForm />}
           </Col>
         </RowFlex>
         <Footer>© Copyright 2019, ONE2EAT.CO</Footer>
@@ -84,3 +87,9 @@ export default class SignIn extends Component {
     );
   }
 }
+const mapStateToProps = state => {
+  console.log(state);
+  return { signState: state.sign };
+};
+
+export default connect(mapStateToProps)(SignIn);

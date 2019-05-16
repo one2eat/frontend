@@ -7,7 +7,7 @@ import { connect } from "react-redux";
 import validate from "./validate-yup/validateYup";
 import getValidationSchema from "./validate-yup/getValidationSchema";
 import { loginUser } from "../Redux/actions/logIn";
-import { openSignup } from "../Redux/actions/sign";
+import { openLogin } from "../Redux/actions/sign";
 
 const FormTitle = styled.h1`
   color: #fff;
@@ -66,19 +66,20 @@ const NoAccountLink = styled.div`
   // font-weight: bold;
 `;
 
-class LogInForm extends React.Component {
+class SignUpForm extends React.Component {
   render() {
     return (
       <InsideRightContent>
         <ToastContainer />
         <WidthForm>
-          <FormTitle>SIGN IN</FormTitle>
+          <FormTitle>SIGN UP</FormTitle>
           <Formik
-            initialValues={{ email: "", password: "" }}
+            initialValues={{ name: "", email: "", password: "" }}
             validationSchema={validate(getValidationSchema)}
             onSubmit={async (values, { setSubmitting }) => {
               await this.props.dispatch(
                 loginUser({
+                  name: values.name,
                   email: values.email,
                   password: values.password
                 })
@@ -87,6 +88,13 @@ class LogInForm extends React.Component {
           >
             {({ isSubmitting, handleChange, values }) => (
               <Form>
+                <FormInput
+                  type="name"
+                  autoComplete="current-name"
+                  name="name"
+                  onChange={handleChange}
+                  placeholder="Name"
+                />
                 <FormInput
                   type="email"
                   autoComplete="current-email"
@@ -110,7 +118,7 @@ class LogInForm extends React.Component {
                   type="submit"
                   disabled={values.password.length > 0 ? false : true}
                 >
-                  Sign In
+                  Sign Up
                 </FormButton>
               </Form>
             )}
@@ -131,8 +139,8 @@ class LogInForm extends React.Component {
               </SignWith>
             </Col>
           </Row> */}
-          <NoAccountLink onClick={this.props.openSignup}>
-            Don't have an account yet? <b>SIGN UP Here!</b>
+          <NoAccountLink onClick={this.props.openLogin}>
+            Already have an account <b>SIGN IN Here!</b>
           </NoAccountLink>
         </WidthForm>
       </InsideRightContent>
@@ -141,8 +149,6 @@ class LogInForm extends React.Component {
 }
 
 const mapStateToProps = state => {
-  console.log(state);
-
   return {
     isLoading: state.login.isLoading
   };
@@ -150,5 +156,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { openSignup }
-)(LogInForm);
+  { openLogin }
+)(SignUpForm);

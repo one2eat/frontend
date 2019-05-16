@@ -62,12 +62,12 @@ class HeaderNav extends React.Component {
                   Menu
                 </DropdownToggle>
                 <DropdownMenu right>
-                  <DropdownItem tag="a" href="/recipes">
-                    Recipes
-                  </DropdownItem>
-                  <DropdownItem tag="a" href="/restaurants">
-                    Restaurants
-                  </DropdownItem>
+                  <Link to="/recipes">
+                    <DropdownItem>Recipes</DropdownItem>
+                  </Link>
+                  <Link to="/restaurants">
+                    <DropdownItem>Restaurants</DropdownItem>
+                  </Link>
                   <DropdownItem divider />
                   <DropdownItem onClick={this.props.logout}>
                     Sign Out

@@ -59,6 +59,7 @@ export const loginUser = payload => {
         console.log(response);
 
         // LOGIN_USER_SUCCESS
+        console.log(response)
         dispatch(loginUserSuccess(response));
 
         // Set isAuthenticated to true in the storage

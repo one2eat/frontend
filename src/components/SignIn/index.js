@@ -88,7 +88,6 @@ class SignIn extends Component {
   }
 }
 const mapStateToProps = state => {
-  console.log(state);
   return { signState: state.sign };
 };
 

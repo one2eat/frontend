@@ -106,7 +106,7 @@ class LogInForm extends React.Component {
 
                 <FormButton
                   type="submit"
-                  disabled={values.password.length > 0 ? false : true}
+                  
                 >
                   Sign In
                 </FormButton>
@@ -139,8 +139,6 @@ class LogInForm extends React.Component {
 }
 
 const mapStateToProps = state => {
-  console.log(state);
-
   return {
     isLoading: state.login.isLoading
   };

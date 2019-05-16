@@ -18,7 +18,7 @@ import logo from "../assets/images/one2eat-logo.png";
 
 const HeaderLogo = styled.img`
   height: 100%;
-  width: 120px;
+  width: 120px;  
 `;
 
 const MyAccountText = {
@@ -33,10 +33,7 @@ class HeaderNav extends React.Component {
       isOpen: false
     };
   }
-  componentDidMount() {
-    console.log(this.props);
-  }
-
+  
   toggle = () => {
     this.setState({
       isOpen: !this.state.isOpen

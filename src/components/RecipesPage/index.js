@@ -2,9 +2,13 @@ import React from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import styled from "@emotion/styled";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faStar } from "@fortawesome/free-solid-svg-icons";
+import { Spinner } from "reactstrap";
+
 import { RecipesContent } from "./recipes";
 import { search } from "../Redux/actions/searchAction";
-import { getMenuToSearch } from "../Redux/actions/getMenuToSearch";
+import { getMenuToSearch, clearMenu } from "../Redux/actions/getMenuToSearch";
 import HeaderNav from "../headerNav";
 
 const HeaderNavBackground = styled.div`
@@ -53,8 +57,37 @@ const SuggestWrapper = styled.div`
   }
 `;
 
+const SuggestContent = styled.div`
+  span:first-of-type {
+    display: block;
+    height: 20px;
+    font-weight: bold;
+    font-size: 14px;
+  }
+`;
+
 const FooterSearchWrapper = styled.div`
   position: relative;
+`;
+
+const RecipeSpan = styled.span`
+  background-image: linear-gradient(256.23deg, #cb2d3e 22.63%, #ef473a 68.74%);
+  font-size: 10px;
+  color: #fff;
+  padding: 1px 15px;
+  border-radius: 20px;
+  margin-right: 10px;
+  font-weight: bold;
+`;
+
+const RestaurantSpan = styled.span`
+  background-image: linear-gradient(90deg, #2c3e50 29.37%, #4c9aaf 100%);
+  font-size: 10px;
+  color: #fff;
+  padding: 1px 15px;
+  border-radius: 20px;
+  margin-right: 10px;
+  font-weight: bold;
 `;
 
 class RecipesHeader extends React.Component {
@@ -66,21 +99,28 @@ class RecipesHeader extends React.Component {
     };
   }
 
+  componentDidMount() {
+    console.log(this.props);
+  }
+
   toggle = () => {
     this.setState({
       isOpen: !this.state.isOpen
     });
   };
 
-  handleChange = event => {
-    this.setState(
-      { searchText: event.target.value },
-      this.props.getMenuToSearch(this.state.searchText)
-    );
+  handleChange = async e => {
+    await this.setState({ searchText: e.target.value });
+
+    if (this.state.searchText.length > 2) {
+      await this.props.getMenuToSearch(this.state.searchText);
+    } else {
+      this.props.clearMenu();
+    }
   };
 
   render() {
-    const { suggestions, profile } = this.props;
+    const { suggestions, profile, isSearching } = this.props;
     return (
       <div>
         {profile.isAuthenticated ? (
@@ -99,11 +139,52 @@ class RecipesHeader extends React.Component {
                 </FooterSearchWrapper>
 
                 <SuggestWrapper>
-                  {suggestions.map((suggest, index) => (
-                    <ul key={index}>
-                      <li>{suggest.name}</li>
+                  {this.state.searchText.length > 2 && (
+                    <ul>
+                      {isSearching ? (
+                        <div>
+                          <Spinner type="grow" color="primary" />
+                          <Spinner type="grow" color="success" />
+                          <Spinner type="grow" color="danger" />
+                        </div>
+                      ) : (
+                        suggestions.map((suggest, index) => (
+                          <li key={`menu-${index}`}>
+                            <SuggestContent>
+                              <span>{suggest.name}</span>
+                              {suggest.type === "recipe" ? (
+                                <RecipeSpan>
+                                  {suggest.type.toUpperCase()}
+                                </RecipeSpan>
+                              ) : (
+                                <RestaurantSpan>
+                                  {suggest.type.toUpperCase()}
+                                </RestaurantSpan>
+                              )}
+                              {[...Array(suggest.star).keys()].map(
+                                (_, index) => (
+                                  <FontAwesomeIcon
+                                    icon={faStar}
+                                    color="gold"
+                                    key={`star-gold-${index}`}
+                                  />
+                                )
+                              )}
+                              {[...Array(4 - suggest.star).keys()].map(
+                                (_, index) => (
+                                  <FontAwesomeIcon
+                                    icon={faStar}
+                                    color="#ccc"
+                                    key={`star-gray-${index}`}
+                                  />
+                                )
+                              )}
+                            </SuggestContent>
+                          </li>
+                        ))
+                      )}
                     </ul>
-                  ))}
+                  )}
                 </SuggestWrapper>
               </HeaderNav>
             </HeaderNavBackground>
@@ -119,13 +200,14 @@ class RecipesHeader extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    suggestions: state.dashboard.suggestions.data,
-    profile: state.profile
+    suggestions: state.searchMenu.suggestions.data,
+    profile: state.profile,
+    isSearching: state.searchMenu.isSearching
   };
 };
 
 const mapDispatchToProps = dispatch => {
-  return bindActionCreators({ search, getMenuToSearch }, dispatch);
+  return bindActionCreators({ search, getMenuToSearch, clearMenu }, dispatch);
 };
 
 export default connect(

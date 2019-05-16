@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import styled from "@emotion/styled";
-import { Col } from "reactstrap";
+import { Col, Spinner } from "reactstrap";
 import { connect } from "react-redux";
 
 import LogInForm from "./logInForm";
@@ -61,10 +61,29 @@ const RowFlex = styled.div`
   min-height: calc(720px - 50px);
 `;
 
+const LoadingStatus = styled.div`
+  position: absolute;
+  background: #f5d1d4;
+  width: 100%;
+  min-height: 100vh;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
 class SignIn extends Component {
   render() {
+    const { isLoading } = this.props;
     return (
       <SignInBackgroundPage>
+        {isLoading && (
+          <LoadingStatus>
+            <Spinner type="grow" color="primary" />
+            <Spinner type="grow" color="success" />
+            <Spinner type="grow" color="danger" />
+          </LoadingStatus>
+        )}
         <RowFlex>
           <Col>
             <InsideLeftContent>
@@ -87,8 +106,12 @@ class SignIn extends Component {
     );
   }
 }
+
 const mapStateToProps = state => {
-  return { signState: state.sign };
+  return {
+    signState: state.sign,
+    isLoading: state.login.isLoading
+  };
 };
 
 export default connect(mapStateToProps)(SignIn);

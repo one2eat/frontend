@@ -3,15 +3,16 @@ import styled from "@emotion/styled";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { ToastContainer } from "react-toastify";
-import { Container, Row, Col } from "reactstrap";
+import { Container, Row, Col, Spinner } from "reactstrap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faStar } from "@fortawesome/free-solid-svg-icons";
 
 import { Footer } from "../Footer";
 import HeaderNav from "../headerNav";
 import RestaurantRecommendationCard from "../RestaurantRecommendationCard";
-
 import SearchLogo from "../../assets/images/search.png";
 import { search } from "../Redux/actions/searchAction";
-import { getMenuToSearch } from "../Redux/actions/getMenuToSearch";
+import { getMenuToSearch, clearMenu } from "../Redux/actions/getMenuToSearch";
 
 const BackgroundHeaderDashboard = styled.div`
   background-image: linear-gradient(256.23deg, #cb2d3e 22.63%, #ef473a 68.74%);
@@ -79,6 +80,16 @@ const SuggestWrapper = styled.div`
       text-align: left;
     }
   }
+  z-index: 1;
+`;
+
+const SuggestContent = styled.div`
+  span:first-of-type {
+    display: block;
+    height: 30px;
+    font-weight: bold;
+    font-size: 18px;
+  }
 `;
 
 const Spacer = styled.div`
@@ -89,20 +100,43 @@ const Title = styled.div`
   font-size: 1.4rem;
 `;
 
+const RecipeSpan = styled.span`
+  background-image: linear-gradient(256.23deg, #cb2d3e 22.63%, #ef473a 68.74%);
+  font-size: 12px;
+  color: #fff;
+  padding: 5px 15px;
+  border-radius: 20px;
+  margin-right: 10px;
+  font-weight: bold;
+`;
+
+const RestaurantSpan = styled.span`
+  background-image: linear-gradient(90deg, #2c3e50 29.37%, #4c9aaf 100%);
+  font-size: 12px;
+  color: #fff;
+  padding: 5px 15px;
+  border-radius: 20px;
+  margin-right: 10px;
+  font-weight: bold;
+`;
+
 class Dashboard extends Component {
   state = {
     searchText: ""
   };
 
-  handleChange = e => {
-    this.setState(
-      { searchText: e.target.value },
-      this.props.getMenuToSearch(this.state.searchText)
-    );
+  handleChange = async e => {
+    await this.setState({ searchText: e.target.value });
+
+    if (this.state.searchText.length > 2) {
+      await this.props.getMenuToSearch(this.state.searchText);
+    } else {
+      this.props.clearMenu();
+    }
   };
 
   render() {
-    const { suggestions } = this.props;
+    const { suggestions, isSearching } = this.props;
     return (
       <div>
         <ToastContainer />
@@ -123,11 +157,48 @@ class Dashboard extends Component {
               />
               <img src={SearchLogo} alt="search" />
               <SuggestWrapper>
-                {suggestions.length > 0 && (
+                {this.state.searchText.length > 2 && (
                   <ul>
-                    {suggestions.map((suggest, index) => (
-                      <li key="index">{suggest.name}</li>
-                    ))}
+                    {isSearching ? (
+                      <div>
+                        <Spinner type="grow" color="primary" />
+                        <Spinner type="grow" color="success" />
+                        <Spinner type="grow" color="danger" />
+                      </div>
+                    ) : (
+                      suggestions.map((suggest, index) => (
+                        <li key={`menu-${index}`}>
+                          <SuggestContent>
+                            <span>{suggest.name}</span>
+                            {suggest.type === "recipe" ? (
+                              <RecipeSpan>
+                                {suggest.type.toUpperCase()}
+                              </RecipeSpan>
+                            ) : (
+                              <RestaurantSpan>
+                                {suggest.type.toUpperCase()}
+                              </RestaurantSpan>
+                            )}
+                            {[...Array(suggest.star).keys()].map((_, index) => (
+                              <FontAwesomeIcon
+                                icon={faStar}
+                                color="gold"
+                                key={`star-gold-${index}`}
+                              />
+                            ))}
+                            {[...Array(4 - suggest.star).keys()].map(
+                              (_, index) => (
+                                <FontAwesomeIcon
+                                  icon={faStar}
+                                  color="#ccc"
+                                  key={`star-gray-${index}`}
+                                />
+                              )
+                            )}
+                          </SuggestContent>
+                        </li>
+                      ))
+                    )}
                   </ul>
                 )}
               </SuggestWrapper>
@@ -174,13 +245,16 @@ class Dashboard extends Component {
 }
 
 const mapStateToProps = state => {
+  console.log(state);
+
   return {
-    suggestions: state.dashboard.suggestions.data
+    suggestions: state.searchMenu.suggestions.data,
+    isSearching: state.searchMenu.isSearching
   };
 };
 
 const mapDispatchToProps = dispatch => {
-  return bindActionCreators({ search, getMenuToSearch }, dispatch);
+  return bindActionCreators({ search, getMenuToSearch, clearMenu }, dispatch);
 };
 
 export default connect(

@@ -100,55 +100,62 @@ class RestaurantsHeader extends React.Component {
   };
 
   render() {
-    const { suggestions } = this.props;
+    const { suggestions, profile } = this.props;
     return (
       <div>
-        <Navbar expand="md" style={FooterBackground}>
-          <Link to="/logged-in">
-            <FooterLogo src={logo} alt="logo" />
-          </Link>
-          <FooterSearchWrapper>
-            <FooterSearch
-              type="search"
-              placeholder="Search recipes, ingredients, places..."
-              value={this.state.searchText}
-              onFocus={() => {}}
-              onBlur={() => {}}
-              onChange={this.handleChange}
-            />
-          </FooterSearchWrapper>
-          <SuggestWrapper>
-            {suggestions.map((suggest, index) => (
-              <ul key={index}>
-                <li>{suggest.name}</li>
-              </ul>
-            ))}
-          </SuggestWrapper>
-          <NavbarToggler onClick={this.toggle} />
-          <Collapse isOpen={this.state.isOpen} navbar>
-            <Nav className="ml-auto" navbar>
-              <UncontrolledDropdown nav inNavbar>
-                <DropdownToggle nav caret style={MyAccountText}>
-                  My Account
-                </DropdownToggle>
-                <DropdownMenu right>
-                  <DropdownItem>Option 1</DropdownItem>
-                  <DropdownItem>Option 2</DropdownItem>
-                  <DropdownItem divider />
-                  <DropdownItem>Sign Out</DropdownItem>
-                </DropdownMenu>
-              </UncontrolledDropdown>
-            </Nav>
-          </Collapse>
-        </Navbar>
-        <RestaurantsContent />
+        {profile.isAuthenticated ? (
+          <div>
+            <Navbar expand="md" style={FooterBackground}>
+              <Link to="/dashboard">
+                <FooterLogo src={logo} alt="logo" />
+              </Link>
+              <FooterSearchWrapper>
+                <FooterSearch
+                  type="search"
+                  placeholder="Search recipes, ingredients, places..."
+                  value={this.state.searchText}
+                  onFocus={() => {}}
+                  onBlur={() => {}}
+                  onChange={this.handleChange}
+                />
+              </FooterSearchWrapper>
+              <SuggestWrapper>
+                {suggestions.map((suggest, index) => (
+                  <ul key={index}>
+                    <li>{suggest.name}</li>
+                  </ul>
+                ))}
+              </SuggestWrapper>
+              <NavbarToggler onClick={this.toggle} />
+              <Collapse isOpen={this.state.isOpen} navbar>
+                <Nav className="ml-auto" navbar>
+                  <UncontrolledDropdown nav inNavbar>
+                    <DropdownToggle nav caret style={MyAccountText}>
+                      My Account
+                    </DropdownToggle>
+                    <DropdownMenu right>
+                      <DropdownItem>Option 1</DropdownItem>
+                      <DropdownItem>Option 2</DropdownItem>
+                      <DropdownItem divider />
+                      <DropdownItem>Sign Out</DropdownItem>
+                    </DropdownMenu>
+                  </UncontrolledDropdown>
+                </Nav>
+              </Collapse>
+            </Navbar>
+            <RestaurantsContent />
+          </div>
+        ) : (
+          <div>Please, login first</div>
+        )}
       </div>
     );
   }
 }
 const mapStateToProps = state => {
   return {
-    suggestions: state.loggedInReducer.suggestions.data
+    suggestions: state.dashboard.suggestions.data,
+    profile: state.profile
   };
 };
 

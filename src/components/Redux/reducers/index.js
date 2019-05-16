@@ -1,13 +1,15 @@
 import { combineReducers } from "redux";
 import { connectRouter } from 'connected-react-router'
 
-import loggedInReducer from "./loggedInReducer";
-import loginReducer from './logInReducer'
+import dashboard from "./dashboard";
+import login from './login';
+import profile from './profile';
 
 const rootReducers = (history) => combineReducers({
-  loggedInReducer,
-  loginReducer,
   router: connectRouter(history),
+  dashboard,
+  login,
+  profile
 });
 
 export default rootReducers;

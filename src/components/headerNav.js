@@ -11,7 +11,7 @@ import {
   DropdownItem
 } from "reactstrap";
 import { connect } from "react-redux";
-import { logout } from "../Redux/actions/logout";
+import { logout } from "./Redux/actions/logout";
 
 import logo from "../../assets/images/one2eat-logo.png";
 
@@ -26,15 +26,14 @@ const MyAccountText = {
 };
 
 class HeaderNav extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       isOpen: false
     };
   }
-  componentDidMount(){
-  console.log(this.props);
-  
+  componentDidMount() {
+    console.log(this.props);
   }
 
   toggle = () => {
@@ -49,6 +48,7 @@ class HeaderNav extends React.Component {
         <Navbar expand="md">
           <NavbarToggler onClick={this.toggle} />
           <FooterLogo src={logo} alt="logo" />
+          {this.props.children}
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
               <UncontrolledDropdown nav inNavbar>

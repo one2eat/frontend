@@ -56,6 +56,8 @@ export const loginUser = payload => {
     axios
       .post(`${process.env.REACT_APP_BACKEND_URI}/users/signin`, payload)
       .then(response => {
+        console.log(response);
+
         // LOGIN_USER_SUCCESS
         dispatch(loginUserSuccess(response));
 
@@ -82,7 +84,7 @@ export const loginUser = payload => {
         // Redirect to profile page after login is success
         dispatch(push("/dashboard"));
         // Notify visitor with toast
-        toast.info(`you are logged in! This is your profile`, {
+        toast.info(`You are logged in! This is your profile`, {
           position: "top-right",
           autoClose: 1500,
           hideProgressBar: false,

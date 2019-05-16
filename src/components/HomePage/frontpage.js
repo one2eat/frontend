@@ -2,6 +2,7 @@ import React from "react";
 import styled from "@emotion/styled";
 import { Row, Container, Col } from "reactstrap";
 import { Link } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 
 import homeImage from "../../assets/images/home/home-image.jpg";
 import logo from "../../assets/images/one2eat-logo.png";
@@ -96,6 +97,7 @@ export const HomeFrontpage = () => {
       <BackgroundPicture src={homeImage} alt="Home" />
       <ImageContent>
         <Container>
+          <ToastContainer />
           <HomeLogo src={logo} alt="logo" />
           <ContentDescription>
             ONE2EAT is a service where you can find food inspiration and

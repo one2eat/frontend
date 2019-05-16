@@ -10,7 +10,7 @@ const initialState = {
   }
 };
 
-const loggedInReducer = (state = initialState, action) => {
+const dashboard = (state = initialState, action) => {
   switch (action.type) {
     case SEARCH:
       const { value } = action;
@@ -32,4 +32,4 @@ const loggedInReducer = (state = initialState, action) => {
   }
 };
 
-export default loggedInReducer;
+export default dashboard;

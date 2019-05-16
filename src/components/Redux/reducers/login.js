@@ -2,7 +2,7 @@ const initialState = {
   isLoading: false
 };
 
-const loginReducer = (state = initialState, action) => {
+const login = (state = initialState, action) => {
   switch (action.type) {
     case "LOGIN_USER_BEGIN": {
       // Mark the state as "loading" so we can show a spinner or something
@@ -43,4 +43,4 @@ const loginReducer = (state = initialState, action) => {
   }
 };
 
-export default loginReducer;
+export default login;

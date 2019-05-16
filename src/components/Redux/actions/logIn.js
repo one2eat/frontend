@@ -80,7 +80,7 @@ export const loginUser = payload => {
       .then(() => {
         // https://github.com/supasate/connected-react-router/blob/master/FAQ.md#how-to-navigate-with-redux-action
         // Redirect to profile page after login is success
-        dispatch(push("/logged-in"));
+        dispatch(push("/dashboard"));
         // Notify visitor with toast
         toast.info(`you are logged in! This is your profile`, {
           position: "top-right",

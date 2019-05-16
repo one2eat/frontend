@@ -40,6 +40,9 @@ const HomeButton = styled.button`
   &:hover {
     background: linear-gradient(90deg, #ef473a 14.71%, #ef473a 82.48%);
   }
+  &:focus {
+    outline: none;
+  }
 `;
 
 const ImageContent = styled.div`

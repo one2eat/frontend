@@ -10,7 +10,10 @@ import {
   DropdownMenu,
   DropdownItem
 } from "reactstrap";
-import logo from '../../assets/images/one2eat-logo.png'
+import { connect } from "react-redux";
+import { logout } from "../Redux/actions/logout";
+
+import logo from "../../assets/images/one2eat-logo.png";
 
 const FooterLogo = styled.img`
   height: 100%;
@@ -20,46 +23,56 @@ const FooterLogo = styled.img`
 const MyAccountText = {
   color: "#fff",
   fontWeight: "bold"
-
 };
 
-export default class HeaderNav extends React.Component {
-  constructor(){
+class HeaderNav extends React.Component {
+  constructor() {
     super();
     this.state = {
       isOpen: false
-    }
+    };
+  }
+  componentDidMount(){
+  console.log(this.props);
+  
   }
 
   toggle = () => {
     this.setState({
       isOpen: !this.state.isOpen
     });
-  }
+  };
 
-  render(){
-  return (
-    <div>
-      <Navbar expand="md">
-        <NavbarToggler onClick={this.toggle} />
-        <FooterLogo src={logo} alt="logo" />
-        <Collapse isOpen={this.state.isOpen} navbar>
-          <Nav className="ml-auto" navbar>
-            <UncontrolledDropdown nav inNavbar>
-              <DropdownToggle nav caret style={MyAccountText}>
-                My Account
-              </DropdownToggle>
-              <DropdownMenu right>
-                <DropdownItem>Option 1</DropdownItem>
-                <DropdownItem>Option 2</DropdownItem>
-                <DropdownItem divider />
-                <DropdownItem>Sign Out</DropdownItem>
-              </DropdownMenu>
-            </UncontrolledDropdown>
-          </Nav>
-        </Collapse>
-      </Navbar>
-    </div>
-  );
+  render() {
+    return (
+      <div>
+        <Navbar expand="md">
+          <NavbarToggler onClick={this.toggle} />
+          <FooterLogo src={logo} alt="logo" />
+          <Collapse isOpen={this.state.isOpen} navbar>
+            <Nav className="ml-auto" navbar>
+              <UncontrolledDropdown nav inNavbar>
+                <DropdownToggle nav caret style={MyAccountText}>
+                  My Account
+                </DropdownToggle>
+                <DropdownMenu right>
+                  <DropdownItem>Option 1</DropdownItem>
+                  <DropdownItem>Option 2</DropdownItem>
+                  <DropdownItem divider />
+                  <DropdownItem onClick={this.props.logout}>
+                    Sign Out
+                  </DropdownItem>
+                </DropdownMenu>
+              </UncontrolledDropdown>
+            </Nav>
+          </Collapse>
+        </Navbar>
+      </div>
+    );
+  }
 }
-}
+
+export default connect(
+  null,
+  { logout }
+)(HeaderNav);

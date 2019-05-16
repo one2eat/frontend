@@ -12,8 +12,6 @@
     "bootstrap": "4.3.1",
     "connected-react-router": "6.4.0",
     "formik": "1.5.4",
-    "i": "^0.3.6",
-    "lodash.debounce": "4.0.8",
     "npm": "^6.9.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",

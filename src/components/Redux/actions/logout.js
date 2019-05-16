@@ -3,7 +3,7 @@ import { push } from "connected-react-router";
 
 import browserStorage from "../browserStorage";
 
-export const logout = async () => dispatch => {
+export const logout = () => dispatch => {
   browserStorage.removeKey("isAuthenticated");
   browserStorage.removeKey("token");
 

@@ -3,13 +3,13 @@ import { push } from "connected-react-router";
 
 import browserStorage from "../browserStorage";
 
-export const logout = () => dispatch => {
-  browserStorage.removeKey("isAuthenticated");
-  browserStorage.removeKey("token");
+export const logout = () => async dispatch => {
+  await browserStorage.removeKey("isAuthenticated");
+  await browserStorage.removeKey("token");
 
-  dispatch(push("/"));
+  await dispatch(push("/"));
 
-  toast.info(`You are logged out!`, {
+  await toast.info(`You are logged out!`, {
     position: "top-right",
     autoClose: 2000,
     hideProgressBar: false,

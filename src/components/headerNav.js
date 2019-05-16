@@ -18,7 +18,7 @@ import logo from "../assets/images/one2eat-logo.png";
 
 const HeaderLogo = styled.img`
   height: 100%;
-  width: 120px;  
+  width: 120px;
 `;
 
 const MyAccountText = {
@@ -33,7 +33,7 @@ class HeaderNav extends React.Component {
       isOpen: false
     };
   }
-  
+
   toggle = () => {
     this.setState({
       isOpen: !this.state.isOpen
@@ -59,12 +59,12 @@ class HeaderNav extends React.Component {
                   Menu
                 </DropdownToggle>
                 <DropdownMenu right>
-                  <DropdownItem tag="a" href="/recipes">
-                    Recipes
-                  </DropdownItem>
-                  <DropdownItem tag="a" href="/restaurants">
-                    Restaurants
-                  </DropdownItem>
+                  <Link to="/recipes">
+                    <DropdownItem>Recipes</DropdownItem>
+                  </Link>
+                  <Link to="/restaurants">
+                    <DropdownItem>Restaurants</DropdownItem>
+                  </Link>
                   <DropdownItem divider />
                   <DropdownItem onClick={this.props.logout}>
                     Sign Out

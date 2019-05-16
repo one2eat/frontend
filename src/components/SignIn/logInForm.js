@@ -2,13 +2,10 @@ import React from "react";
 import styled from "@emotion/styled";
 import { ToastContainer } from "react-toastify";
 import { Formik, Form, ErrorMessage } from "formik";
-import { Row, Col } from "reactstrap";
 import { connect } from "react-redux";
 
 import validate from "./validate-yup/validateYup";
 import getValidationSchema from "./validate-yup/getValidationSchema";
-import GoogleLogo from "../../assets/images/signIn/google.png";
-import FacebookLogo from "../../assets/images/signIn/facebook.png";
 import { loginUser } from "../Redux/actions/logIn";
 import { Link } from 'react-router-dom'
 
@@ -58,27 +55,6 @@ const InsideRightContent = styled.div`
 const WidthForm = styled.div`
   width: 350px;
   margin: 0 auto;
-`;
-
-const OrSignInWith = styled.div`
-  color: #fff;
-  text-align: center;
-  margin: 24px 0;
-  font-size: 20px;
-  font-weight: bold;
-`;
-
-const SignWith = styled.div`
-  height: 50px;
-  background: #fff;
-  border-radius: 10px;
-  padding: 10px 15px;
-
-  span {
-    font-weight: bold;
-    font-size: 18px;
-    margin-left: 10px;
-  }
 `;
 
 const NoAccountLink = styled(Link)`
@@ -163,7 +139,7 @@ class LogInForm extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    isLoading: state.loginReducer.isLoading
+    isLoading: state.login.isLoading
   };
 };
 

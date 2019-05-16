@@ -7,7 +7,7 @@ export const getMenuToSearch = value =>
     if (value.length >= 3) {
       await axios
         .get(
-          `http://ec2-18-218-96-166.us-east-2.compute.amazonaws.com/search?q=${value}`
+          `${process.env.REACT_APP_BACKEND_URI}/search?q=${value}`
         )
         .then(response => {
           dispatch({

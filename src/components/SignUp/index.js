@@ -117,7 +117,7 @@ class SignUpForm extends React.Component {
                   type="submit"
                   disabled={values.password.length > 0 ? false : true}
                 >
-                  Sign Up
+                  Register
                 </FormButton>
               </Form>
             )}

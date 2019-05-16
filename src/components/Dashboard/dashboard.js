@@ -6,13 +6,16 @@ import { ToastContainer } from "react-toastify";
 import { Container, Row, Col } from "reactstrap";
 
 import { Footer } from "../Footer";
-import HeaderNav from "./headerNav";
-import MainHeader from "../mainHeader";
+import HeaderNav from "../headerNav";
 import RestaurantRecommendationCard from "../RestaurantRecommendationCard";
 
 import SearchLogo from "../../assets/images/search.png";
 import { search } from "../Redux/actions/searchAction";
 import { getMenuToSearch } from "../Redux/actions/getMenuToSearch";
+
+const BackgroundHeaderDashboard = styled.div`
+  background-image: linear-gradient(256.23deg, #cb2d3e 22.63%, #ef473a 68.74%);
+`;
 
 const SearchBar = styled.div`
   min-height: 100vh;
@@ -103,7 +106,7 @@ class Dashboard extends Component {
     return (
       <div>
         <ToastContainer />
-        <MainHeader>
+        <BackgroundHeaderDashboard>
           <HeaderNav />
           <SearchBar>
             <SearchBarTitle>
@@ -130,8 +133,7 @@ class Dashboard extends Component {
               </SuggestWrapper>
             </SearchBarWrapper>
           </SearchBar>
-        </MainHeader>
-
+        </BackgroundHeaderDashboard>
         <Container>
           <Spacer />
           <Title>

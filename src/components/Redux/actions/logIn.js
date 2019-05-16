@@ -56,10 +56,7 @@ export const loginUser = payload => {
     axios
       .post(`${process.env.REACT_APP_BACKEND_URI}/users/signin`, payload)
       .then(response => {
-        console.log(response);
-
         // LOGIN_USER_SUCCESS
-        console.log(response)
         dispatch(loginUserSuccess(response));
 
         // Set isAuthenticated to true in the storage

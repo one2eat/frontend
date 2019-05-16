@@ -3,7 +3,6 @@ import styled from "@emotion/styled";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { ToastContainer } from "react-toastify";
-
 import { Container, Row, Col } from "reactstrap";
 
 import { Footer } from "../Footer";

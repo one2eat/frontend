@@ -57,6 +57,7 @@ export const loginUser = payload => {
       .post(`${process.env.REACT_APP_BACKEND_URI}/users/signin`, payload)
       .then(response => {
         // LOGIN_USER_SUCCESS
+        console.log(response)
         dispatch(loginUserSuccess(response));
 
         // Set isAuthenticated to true in the storage

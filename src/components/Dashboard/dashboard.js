@@ -87,7 +87,7 @@ const Title = styled.div`
   font-size: 1.4rem;
 `;
 
-class LoggedInFrontPage extends Component {
+class Dashboard extends Component {
   state = {
     searchText: ""
   };
@@ -174,7 +174,7 @@ class LoggedInFrontPage extends Component {
 
 const mapStateToProps = state => {
   return {
-    suggestions: state.loggedInReducer.suggestions.data
+    suggestions: state.dashboard.suggestions.data
   };
 };
 
@@ -185,4 +185,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(LoggedInFrontPage);
+)(Dashboard);

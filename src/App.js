@@ -4,12 +4,11 @@ import { Provider } from "react-redux";
 import configureStore, {
   history
 } from "./components/Redux/store/configureStore";
-import { ConnectedRouter } from 'connected-react-router'
-
+import { ConnectedRouter } from "connected-react-router";
 
 import Home from "./components/HomePage";
 import SignIn from "./components/SignIn";
-import IndexLoggedIn from "./components/LoggedInFrontPage";
+import DashboardIndex from "./components/Dashboard";
 import Recipes from "./components/RecipesPage";
 import Restaurants from "./components/RestaurantsPage";
 
@@ -22,8 +21,8 @@ const App = () => {
         <Switch>
           <Route path="/" exact component={Home} />
           <Route path="/signin" exact component={SignIn} />
-          <Route path="/recipes" exact component={Recipes} />
-          <Route path="/dashboard" exact component={IndexLoggedIn} />
+          <Route path="/dashboard" exact component={DashboardIndex} />
+          <Route path="/recipes" exact component={Recipes} />∏
           <Route path="/restaurants" exact component={Restaurants} />
         </Switch>
       </ConnectedRouter>

@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import styled from "@emotion/styled";
-import { RecipesContent } from "./recipes";
+import RecipesContent from "./recipes";
 import { search } from "../Redux/actions/searchAction";
 import { getMenuToSearch } from "../Redux/actions/getMenuToSearch";
 import HeaderNav from "../headerNav";

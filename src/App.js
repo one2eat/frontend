@@ -22,8 +22,8 @@ const App = () => {
           <Route path="/" exact component={Home} />
           <Route path="/signin" exact component={SignIn} />
           <Route path="/dashboard" exact component={DashboardIndex} />
-          <Route path="/recipes" exact component={Recipes} />∏
-          <Route path="/restaurants" exact component={Restaurants} />
+          <Route path="/recipe" exact component={Recipes} />∏
+          <Route path="/restaurant" exact component={Restaurants} />
         </Switch>
       </ConnectedRouter>
     </Provider>

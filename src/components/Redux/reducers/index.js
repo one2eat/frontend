@@ -6,6 +6,8 @@ import login from "./login";
 import profile from "./profile";
 import sign from "./sign";
 import signup from "./signup";
+import recipe from './recipe';
+import restaurant from './restaurant';
 
 const rootReducers = history =>
   combineReducers({
@@ -14,7 +16,9 @@ const rootReducers = history =>
     login,
     profile,
     sign,
-    signup
+    signup,
+    recipe,
+    restaurant
   });
 
 export default rootReducers;

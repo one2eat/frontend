@@ -3,16 +3,20 @@ import styled from "@emotion/styled";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { ToastContainer } from "react-toastify";
-import { Container, Row, Col, Spinner } from "reactstrap";
+import { Container, Spinner } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
+import { withRouter } from "react-router-dom";
 
 import { Footer } from "../Footer";
 import HeaderNav from "../headerNav";
-import RestaurantRecommendationCard from "../RestaurantRecommendationCard";
+// import RestaurantRecommendationCard from "../RestaurantRecommendationCard";
 import SearchLogo from "../../assets/images/search.png";
 import { search } from "../Redux/actions/searchAction";
 import { getMenuToSearch, clearMenu } from "../Redux/actions/getMenuToSearch";
+import { getRecipe } from "../Redux/actions/recipes";
+import {getRestaurant} from '../Redux/actions/restaurant'
+import RecommendationRestaurant from "./recommendationRestaurant";
 
 const BackgroundHeaderDashboard = styled.div`
   background-image: linear-gradient(256.23deg, #cb2d3e 22.63%, #ef473a 68.74%);
@@ -135,6 +139,16 @@ class Dashboard extends Component {
     }
   };
 
+  handleLink = async data => {
+    if (data.type === "restaurant") {
+      await this.props.getRestaurant(data.id);
+    }
+
+    if (data.type === "recipe") {
+      await this.props.getRecipe(data.id);
+    }
+  };
+
   render() {
     const { suggestions, isSearching } = this.props;
     return (
@@ -167,7 +181,11 @@ class Dashboard extends Component {
                       </div>
                     ) : (
                       suggestions.map((suggest, index) => (
-                        <li key={`menu-${index}`}>
+                        <li
+                          key={`menu-${index}`}
+                          onClick={() => this.handleLink(suggest)}
+                          style={{cursor: "pointer"}}
+                        >
                           <SuggestContent>
                             <span>{suggest.name}</span>
                             {suggest.type === "recipe" ? (
@@ -179,14 +197,14 @@ class Dashboard extends Component {
                                 {suggest.type.toUpperCase()}
                               </RestaurantSpan>
                             )}
-                            {[...Array(suggest.star).keys()].map((_, index) => (
+                            {[...Array(parseInt(suggest.star)).keys()].map((_, index) => (
                               <FontAwesomeIcon
                                 icon={faStar}
                                 color="gold"
                                 key={`star-gold-${index}`}
                               />
                             ))}
-                            {[...Array(4 - suggest.star).keys()].map(
+                            {[...Array(5 - suggest.star).keys()].map(
                               (_, index) => (
                                 <FontAwesomeIcon
                                   icon={faStar}
@@ -212,7 +230,7 @@ class Dashboard extends Component {
           </Title>
           <Spacer />
 
-          <Row>
+          {/* <Row>
             <Col>
               <RestaurantRecommendationCard
                 image="https://anakjajan.files.wordpress.com/2018/06/cover3.jpg?w=672&h=372&crop=1"
@@ -234,10 +252,11 @@ class Dashboard extends Component {
                 star={5}
               />
             </Col>
-          </Row>
+          </Row> */}
         </Container>
         <Spacer />
 
+        <RecommendationRestaurant />
         <Footer />
       </div>
     );
@@ -254,10 +273,13 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => {
-  return bindActionCreators({ search, getMenuToSearch, clearMenu }, dispatch);
+  return bindActionCreators(
+    { search, getMenuToSearch, clearMenu, getRecipe, getRestaurant },
+    dispatch
+  );
 };
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Dashboard);
+)(withRouter(Dashboard));

@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "@emotion/styled";
 import { Row, Col } from "reactstrap";
+import { connect } from "react-redux";
 
 import LawlessRestaurants from "../../assets/images/restaurants/lawless.jpg";
 import PhoneLogo from "../../assets/images/restaurants/phone-logo.svg";
@@ -14,15 +15,15 @@ const Container = styled.div`
 
 const TitleText = styled.h1`
   position: absolute;
-  font-weight: bold;
-  color: white;
-  top: 30px;
-  margin-top: 550px;
+
   margin-left: 50px;
 `;
 
-const LawlessPicture = styled.img`
+const RestaurantImage = styled.img`
   border-bottom: 10px solid #ca2d3e;
+  width: 100%;
+  height: 700px;
+  object-fit: cover;
 `;
 
 const Address = styled.div`
@@ -75,8 +76,6 @@ const BurgerMenu = styled.img`
 
 const ReviewText = styled.h3`
   margin-top: 30px;
-  margin-bottom: 10px;
-  margin-left: 20px;
   text-decoration: underline;
   text-decoration-color: #ca2d3e;
   font-weight: bold;
@@ -114,20 +113,17 @@ const ReviewButton = styled.button`
 
 const AccountReviewStyle = styled.div`
   display: flex;
-  margin-left: 70px;
-  margin-right: 500px;
+  margin-left: 50px;
+  width: 770px;
   margin-top: 50px;
   margin-bottom: 30px;
   border-radius: 10px;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-  background: linear-gradient(180deg, #ffffff 0%, rgba(255, 255, 255, 0) 100%),
-    linear-gradient(180deg, #ffffff 0%, rgba(255, 255, 255, 0) 100%), #6f6f6f;
 `;
 
 const AccountPhoto = styled.img`
-  height: 75px;
-  width: 100px;
   margin-right: 20px;
+  border-radius: 50%;
 `;
 
 const ReviewLikes = styled.div`
@@ -145,62 +141,86 @@ const ReviewUsername = styled.h6`
   font-weight: bold;
 `;
 
-export const RestaurantsContent = () => {
-  return (
-    <Container>
-      <LawlessPicture src={LawlessRestaurants} alt="lawless" />
-      <TitleText>Lawless Burger</TitleText>
-      <Address>
+class RestaurantsContent extends React.Component {
+  getRandomInt = (min, max) => {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
+  };
+  componentDidMount() {
+    console.log(this.props.restaurant);
+  }
+  render() {
+    return (
+      <Container>
+        <RestaurantImage
+          src={this.props.restaurant.data.imageUrl}
+          alt="lawless"
+        />
+        <TitleText>{this.props.restaurant.data.name}</TitleText>
+        <Address>
+          <div>
+            <AddressTextTitle>Address</AddressTextTitle>
+          </div>
+          <div>
+            <AddressText>{this.props.restaurant.data.address}</AddressText>
+          </div>
+          <div>
+            <Row>
+              <Col>
+                <PhoneNumberText>
+                  <PhoneImage src={PhoneLogo} alt="phone-logo" />
+                  <PhoneNumber>021 1234 123</PhoneNumber>
+                </PhoneNumberText>
+              </Col>
+              <Col>
+                <p>Hours : 11.00 AM - 10.00 PM</p>
+              </Col>
+            </Row>
+          </div>
+        </Address>
+        {/* <MenuTitle>Menu</MenuTitle>
         <div>
-          <AddressTextTitle>Address</AddressTextTitle>
-        </div>
-        <div>
-          <AddressText>
-            Jl. Kemang Selatan VIII No.67K, RT.7/RW.2, Bangka, Mampang Prpt.,
-            Kota Jakarta Selatan, Daerah Khusus Ibukota Jakarta 12730
-          </AddressText>
-        </div>
-        <div>
-          <Row>
-            <Col>
-              <PhoneNumberText>
-                <PhoneImage src={PhoneLogo} alt="phone-logo" />
-                <PhoneNumber>021 1234 123</PhoneNumber>
-              </PhoneNumberText>
-            </Col>
-            <Col>
-              <p>Hours : 11.00 AM - 10.00 PM</p>
-            </Col>
-          </Row>
-        </div>
-      </Address>
-      <MenuTitle>Menu</MenuTitle>
-      <div>
-        <BurgerMenu src={Burger} alt="lawless-burger" />
-      </div>
-      <ReviewTextStyling>
-        <ReviewText>Review</ReviewText>
-      </ReviewTextStyling>
-      <ReviewButton>Write Review</ReviewButton>
-      <AccountReviewStyle>
-        <AccountPhoto src={UsernamePicure} alt="account" />
-        <div>
-          <ReviewUsername>Username</ReviewUsername>
-          <ReviewLikes>
-            <ReviewLikesLogo src={LoveLogo} alt="like" />
-            <p>219</p>
-          </ReviewLikes>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum.
-          </p>
-        </div>
-      </AccountReviewStyle>
-    </Container>
-  );
+          <BurgerMenu src={Burger} alt="lawless-burger" />
+        </div> */}
+        <ReviewTextStyling>
+          <ReviewText>Review</ReviewText>
+        </ReviewTextStyling>
+        <ReviewButton>Write Review</ReviewButton>
+        <AccountReviewStyle>
+          <div style={{ padding: 20, width: "100%" }}>
+            <Row>
+              <Col lg={{size:3}} xl={{size:3}}>
+                <AccountPhoto
+                  src={"http://lorempixel.com/128/128/people/"}
+                  alt="account"
+                />
+              </Col>
+              <Col lg={{size:9}} xl={{size:9}}>
+                <div>
+                  <ReviewUsername>Gibran</ReviewUsername>
+                  <ReviewLikes>
+                    <ReviewLikesLogo src={LoveLogo} alt="like" />
+                    <p>219</p>
+                  </ReviewLikes>
+                  <p>
+                    Tempatnya enak banget dan asik. Cocok buat kumpul-kumpul.
+                  </p>
+                </div>
+              </Col>
+            </Row>
+          </div>
+        </AccountReviewStyle>
+      </Container>
+    );
+  }
+}
+
+const mapStateToProps = state => {
+  console.log(state);
+  return {
+    restaurant: state.restaurant.restaurant
+  };
 };
+
+export default connect(mapStateToProps)(RestaurantsContent);

@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { Spinner } from "reactstrap";
 
-import { RecipesContent } from "./recipes";
+import RecipesContent from "./recipes";
 import { search } from "../Redux/actions/searchAction";
 import { getMenuToSearch, clearMenu } from "../Redux/actions/getMenuToSearch";
 import HeaderNav from "../headerNav";
